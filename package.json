@@ -1,6 +1,6 @@
 {
   "name": "youtube-reload",
-  "version": "4.7.4",
+  "version": "4.7.5",
   "homepage": "https://gabrielogregorio.github.io/youtube-reload",
   "private": false,
   "main": "build/index.js",
