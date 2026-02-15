@@ -5,10 +5,10 @@
   "private": false,
   "main": "build/index.js",
   "engines": {
-    "pnpm": ">=8.0.0",
+    "pnpm": ">=10.29.3",
     "node": ">=16.x"
   },
-  "packageManager": "pnpm@8.0.0",
+  "packageManager": "pnpm@10.29.3",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
@@ -23,9 +23,9 @@
     "e2e:features": "start-server-and-test _start_prod_app http://0.0.0.0:5556/youtube-reload _headless:tests",
     "e2e:accessibility": "start-server-and-test _start_prod_app http://0.0.0.0:5556/youtube-reload _headless:accessibility",
     "check:all": "pnpm run format && pnpm run lint && pnpm run lint && pnpm run unit:coverage && pnpm run e2e",
-    "format": "prettier *.{ts,js,md,tsx,jsx} --write",
+    "format": "prettier src/**/*.{ts,js,md,tsx,jsx} --write",
     "lint": "eslint -c ./.eslintrc.js --fix && tsc -p .",
-    "format:check": "prettier *.{ts,js,md,tsx,jsx} --check",
+    "format:check": "prettier src/**/*.{ts,js,md,tsx,jsx} --check",
     "clear:env": "rm -rf build coverage lighthouseReport.html tsconfig.tsbuildinfo",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
@@ -68,7 +68,7 @@
   },
   "devDependencies": {
     "@axe-core/react": "^4.9.1",
-    "@badeball/cypress-cucumber-preprocessor": "^20.0.2",
+    "@badeball/cypress-cucumber-preprocessor": "20.1.2",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
