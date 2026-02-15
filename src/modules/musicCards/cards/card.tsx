@@ -1,16 +1,15 @@
 import { ReactButton } from '@/modules/musicCards/cards/reactButton';
-import { IMusicWithTransformation, languageType } from '@/modules/musicCards/mappers/get/fromApi';
+import { IMusicWithTransformation } from '@/modules/musicCards/mappers/get/fromApi';
 import { ReactionEnum } from '@/modules/musicCards/services/ReactionsService';
 
 interface IProps {
   playlistLocal: IMusicWithTransformation;
   sendReaction: (idContent: string, reaction: ReactionEnum) => void;
   reaction: ReactionEnum;
-  language: languageType;
   index: number;
 }
 
-export const Card = ({ playlistLocal, sendReaction, reaction, index, language }: IProps) => {
+export const Card = ({ playlistLocal, sendReaction, reaction, index }: IProps) => {
   return (
     <li
       key={playlistLocal.url}
@@ -23,21 +22,11 @@ export const Card = ({ playlistLocal, sendReaction, reaction, index, language }:
           aria-labelledby={`videoIntroduction-${index} videoTitle-${index} videoFrom-${index} videoArtist-${index}`}
           aria-describedby={`videoPlatform-${index}`}>
           <div className="sr-only">
-            <span id={`videoIntroduction-${index}`} lang="pt">
-              Ver
-            </span>
-            <span id={`videoTitle-${index}`} lang={language}>
-              {playlistLocal.title}
-            </span>
-            <span id={`videoFrom-${index}`} lang="pt">
-              De
-            </span>
-            <span id={`videoArtist-${index}`} lang={language}>
-              {playlistLocal.artist}
-            </span>
-            <span id={`videoPlatform-${index}`} lang="pt">
-              no YouTube
-            </span>
+            <span id={`videoIntroduction-${index}`}>Ver</span>
+            <span id={`videoTitle-${index}`}>{playlistLocal.title}</span>
+            <span id={`videoFrom-${index}`}>De</span>
+            <span id={`videoArtist-${index}`}>{playlistLocal.artist}</span>
+            <span id={`videoPlatform-${index}`}>no YouTube</span>
           </div>
           <header>
             <img

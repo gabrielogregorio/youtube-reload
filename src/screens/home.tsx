@@ -19,7 +19,13 @@ export const HomePage = () => {
 
   return (
     <div>
-      <main id="main-content">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] bg-emergency focus:bg-emergency focus:text-white focus:px-4 focus:py-2 focus:rounded font-heading">
+        Pular para conteudo principal
+      </a>
+
+      <main id="main">
         <Header />
 
         <Cards cards={filtered} />

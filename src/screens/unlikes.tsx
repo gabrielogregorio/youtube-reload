@@ -16,7 +16,7 @@ export const UnLikesPage = () => {
 
   return (
     <div>
-      <main id="main-content">
+      <main id="main">
         <Header />
 
         <Cards cards={filtered} />

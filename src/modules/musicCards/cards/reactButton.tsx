@@ -30,6 +30,8 @@ export const ReactButton = ({ isSelected, text, variant, sendReaction, ariaLabel
   };
 
   const styleVariant: IDefaultColorType = variants[variant];
+  const normalVariant = styleVariant.normal;
+  const styleIsSelected = isSelected ? styleVariant.select : styleVariant.unSelect;
   return (
     <button
       type="button"
@@ -38,9 +40,7 @@ export const ReactButton = ({ isSelected, text, variant, sendReaction, ariaLabel
       aria-label={ariaLabel}
       title={title}
       className={tailwindMerge(
-        `text-[0.9rem] py-[10px] font-bold px-[15px] cursor-pointer bg-transparent transition-all duration-150 border-2 rounded-xl select-none ${
-          styleVariant.normal
-        } ${isSelected ? styleVariant.select : styleVariant.unSelect}`,
+        `text-[0.9rem] py-[10px] font-bold px-[15px] cursor-pointer bg-transparent transition-all duration-150 border-2 rounded-xl select-none ${normalVariant} ${styleIsSelected}`,
       )}>
       {text}
     </button>

@@ -1,6 +1,5 @@
 import { Then, When, Given } from '@badeball/cypress-cucumber-preprocessor';
 
-
 Given('the user are in date {string}', (isoDate: string) => {
   cy.clock(new Date(isoDate).getTime(), ['Date']);
   cy.log(new Date().toLocaleDateString(), isoDate);
