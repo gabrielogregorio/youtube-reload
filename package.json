@@ -1,12 +1,12 @@
 {
   "name": "youtube-reload",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "homepage": "https://gabrielogregorio.github.io/youtube-reload",
   "private": false,
   "main": "build/index.js",
   "engines": {
     "pnpm": ">=10.29.3",
-    "node": ">=16.x"
+    "node": ">=22.x"
   },
   "packageManager": "pnpm@10.29.3",
   "scripts": {

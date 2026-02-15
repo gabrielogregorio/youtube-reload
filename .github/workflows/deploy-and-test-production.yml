@@ -12,11 +12,11 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        pnpm-version: [8.3.1]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v2
@@ -44,11 +44,11 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        pnpm-version: [8.3.1]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v2
@@ -81,11 +81,11 @@ jobs:
     timeout-minutes: 5
     strategy:
       matrix:
-        pnpm-version: [8.3.1]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v2
@@ -119,11 +119,11 @@ jobs:
     timeout-minutes: 5
     strategy:
       matrix:
-        pnpm-version: [8.3.1]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v2
@@ -162,11 +162,11 @@ jobs:
 
     strategy:
       matrix:
-        pnpm-version: [8.3.1]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v2
@@ -192,11 +192,11 @@ jobs:
 
     strategy:
       matrix:
-        pnpm-version: [8.3.1]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: use pnpm.js ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v2
@@ -218,11 +218,11 @@ jobs:
     timeout-minutes: 2
     strategy:
       matrix:
-        pnpm-version: [8.3.1]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: use pnpm.js ${{ matrix.pnpm-version }}
         uses: pnpm/action-setup@v2
@@ -251,12 +251,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
-        pnpm-version: [8.3.1]
+        node-version: [22.x]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
