@@ -20,12 +20,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
-        pnpm-version: [8.3.1]
+        node-version: [22.x]
+        pnpm-version: [10.29.3]
 
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 

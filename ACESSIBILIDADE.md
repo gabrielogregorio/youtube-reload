@@ -11,7 +11,7 @@
 - Ter um link ser o ir para o conteudo principal
 ```html
 <body>
-  <a href="#main-content" class="skip-link">Ir para conteúdo principal</a>
+  <a href="#main" class="skip-link">Ir para conteúdo principal</a>
   <style>
     * {
       padding: 0;

@@ -45,7 +45,7 @@ pnpm i
 pnpm run dev
 ```
 
-Acesse http://localhost:5173/
+Acesse http://127.0.0.1:5173/
 
 
 ## How run gh actions local

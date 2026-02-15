@@ -18,7 +18,6 @@ export const Cards = ({ cards }: ICardsProps) => {
             return (
               <Card
                 index={index}
-                language={card.language}
                 reaction={reactions?.[card.id] || ReactionEnum.none}
                 key={card.url}
                 playlistLocal={card}

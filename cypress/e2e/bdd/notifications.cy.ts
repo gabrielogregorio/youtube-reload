@@ -1,8 +1,8 @@
 import { Then, When, Given } from '@badeball/cypress-cucumber-preprocessor';
 
 Given('the user is logged in to the website', () => {
-  cy.clock();
   cy.visit('/');
+  cy.clock();
 });
 
 When('the user clicks on the notifications icon', (text: string) => {

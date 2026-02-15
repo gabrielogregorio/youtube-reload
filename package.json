@@ -1,12 +1,12 @@
 {
   "name": "youtube-reload",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "homepage": "https://gabrielogregorio.github.io/youtube-reload",
   "private": false,
   "main": "build/index.js",
   "engines": {
     "pnpm": ">=10.29.3",
-    "node": ">=16.x"
+    "node": ">=22.x"
   },
   "packageManager": "pnpm@10.29.3",
   "scripts": {
@@ -93,8 +93,8 @@
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
     "@vitejs/plugin-react": "^3.0.0",
-    "@vitest/coverage-c8": "^0.25.7",
-    "@vitest/ui": "^0.25.7",
+    "@vitest/coverage-v8": "4.0.18",
+    "@vitest/ui": "^4.0.18",
     "autoprefixer": "^10.4.13",
     "axe-core": "^4.9.0",
     "concurrently": "^8.2.2",
@@ -127,12 +127,13 @@
     "pa11y": "^6.2.3",
     "postcss": "^8.4.19",
     "prettier": "^2.8.1",
+    "prettier-eslint": "^16.4.2",
     "start-server-and-test": "^2.0.0",
     "storybook": "^7.4.0",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4",
     "vite": "^4.0.5",
     "vite-plugin-pwa": "^0.14.0",
-    "vitest": "^0.25.7"
+    "vitest": "^4.0.18"
   }
 }
