@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { VitePWA } from 'vite-plugin-pwa';
 
-const baseUrl = '/youtube-reload';
+const baseUrl = '/youtube-reload/';
 
 export default defineConfig(({ mode }) => {
   const isTest = mode === 'test';
@@ -82,8 +82,8 @@ export default defineConfig(({ mode }) => {
             display: 'standalone',
             orientation: 'portrait',
 
-            start_url: baseUrl + '/',
-            scope: baseUrl + '/',
+            start_url: baseUrl,
+            scope: baseUrl,
 
             icons: [
               {
