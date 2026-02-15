@@ -8,7 +8,6 @@ Sentry.init({
     //   // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
     //   tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
     // }),
-    new Sentry.Replay(),
   ],
   tracesSampleRate: 0.2,
   enabled: !!envs.SENTRY_DSN,

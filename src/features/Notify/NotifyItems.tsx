@@ -12,6 +12,7 @@ interface IProps {
 
 export const NotifyItems = ({ closeNotify, notifyIsOpen, notifications, viewedNotificationIds }: IProps) => {
   const refComponent = useRef<HTMLDivElement>(null);
+
   useOutsideClick(refComponent, () => {
     closeNotify();
   });

@@ -11,7 +11,7 @@ const TIME_TO_MARK_VIEWED_NOTIFICATIONS_IN_MS = 3000;
 export const Notify = () => {
   const [notifyIsOpen, setNotifyIsOpen] = useState(false);
   const { notifications, viewedNotificationIds, updateViewedNotifications } = useFetchAllNotify();
-  const resetTimeout = useRef<ReturnType<typeof setTimeout>>();
+  const resetTimeout = useRef<ReturnType<typeof setTimeout>>(null);
 
   useOnMount(() => {
     if (resetTimeout.current) {
