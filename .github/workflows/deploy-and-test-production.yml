@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
@@ -27,13 +27,13 @@ jobs:
         run: pnpm i --frozen-lockfile
 
       - name: cache node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: cache cypress
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}
@@ -51,18 +51,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
       - name: restore node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: use pnpm ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
@@ -70,7 +70,7 @@ jobs:
         run: pnpm run build
 
       - name: cache build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: build
           key: build-${{ runner.os }}
@@ -88,24 +88,24 @@ jobs:
         uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
       - name: restore node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: restore build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: build
           key: build-${{ runner.os }}
 
       - name: Cache Cypress Binary
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}
@@ -126,24 +126,24 @@ jobs:
         uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
       - name: restore build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: build
           key: build-${{ runner.os }}
 
       - name: restore node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Cache Cypress Binary
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}
@@ -169,12 +169,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: use pnpm ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
       - name: restore node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -199,12 +199,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: use pnpm.js ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
       - name: restore node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -225,12 +225,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: use pnpm.js ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
       - name: restore node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -264,7 +264,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: use pnpm.js ${{ matrix.pnpm-version }}
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: ${{ matrix.pnpm-version }}
 
