@@ -2,7 +2,7 @@ name: preview deploy
 
 on:
   pull_request:
-    branch:
+    branches:
       - main
       - dev
     types:
@@ -30,7 +30,7 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: checkout Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
 
