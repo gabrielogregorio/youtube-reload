@@ -9,6 +9,9 @@ const baseUrl = envs.VITE_BASE_URL || '/youtube-reload';
 
 export default defineConfig(({ mode }) => {
   const isTest = mode === 'test';
+  const isStorybook = process.argv.some((arg) => arg.includes('storybook'));
+
+  const isProduction = process.env.NODE_ENV === 'production';
 
   return {
     root: '.',
@@ -57,8 +60,11 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
-      react({ fastRefresh: !isTest }),
+      react({
+        fastRefresh: !isTest,
+      }),
       !isTest &&
+        !isStorybook &&
         VitePWA({
           registerType: 'autoUpdate',
           base: baseUrl,
@@ -104,6 +110,8 @@ export default defineConfig(({ mode }) => {
           // },
         }),
       !isTest &&
+        !isStorybook &&
+        isProduction &&
         sentryVitePlugin({
           org: 'gregorio-kg',
           project: 'youtube-reload',
