@@ -67,7 +67,8 @@ export default defineConfig(({ mode }) => {
         VitePWA({
           registerType: 'autoUpdate',
 
-          base: baseUrl,
+          injectRegister: 'auto',
+          manifestFilename: 'manifest.webmanifest',
 
           includeAssets: ['favicon.ico', 'icon.png', 'icon-512x512.png'],
 
@@ -82,8 +83,8 @@ export default defineConfig(({ mode }) => {
             display: 'standalone',
             orientation: 'portrait',
 
-            start_url: baseUrl,
-            scope: baseUrl,
+            start_url: '/youtube-reload/',
+            scope: '/youtube-reload/',
 
             icons: [
               {
