@@ -79,76 +79,76 @@ jobs:
     needs: install_and_build
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    strategy:
-      matrix:
-        pnpm-version: [10.29.3]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: use pnpm ${{ matrix.pnpm-version }}
+      - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: ${{ matrix.pnpm-version }}
+          version: 10.29.3
 
-      - name: restore node_modules
+      - name: Restore node_modules
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: restore build
+      - name: Restore build
         uses: actions/cache@v3
         with:
           path: build
           key: build-${{ runner.os }}
 
-      - name: Cache Cypress Binary
+      - name: Restore Cypress Binary
         uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}
+          key: cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: running e2e tests
+      - name: Install Cypress binary
+        run: pnpm exec cypress install
+
+      - name: Run e2e feature tests
         run: pnpm run e2e:features
 
   e2e_accessibility:
     needs: install_and_build
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    strategy:
-      matrix:
-        pnpm-version: [10.29.3]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: use pnpm ${{ matrix.pnpm-version }}
+      - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: ${{ matrix.pnpm-version }}
+          version: 10.29.3
 
-      - name: restore build
+      - name: Restore build
         uses: actions/cache@v3
         with:
           path: build
           key: build-${{ runner.os }}
 
-      - name: restore node_modules
+      - name: Restore node_modules
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Cache Cypress Binary
+      - name: Restore Cypress Binary
         uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}
+          key: cypress-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: running e2e accessibility tests
+      - name: Install Cypress binary
+        run: pnpm exec cypress install
+
+      - name: Run e2e accessibility tests
         run: pnpm run e2e:accessibility
 
   unit_tests_and_up_coverage:
