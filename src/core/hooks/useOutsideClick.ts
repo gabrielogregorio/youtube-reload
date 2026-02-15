@@ -1,10 +1,17 @@
 import { RefObject, useEffect, useState } from 'react';
 
-export const useOutsideClick = (ref: RefObject<HTMLDivElement>, onOutsideClick: () => void = () => {}): { clickedOutside: boolean } => {
+export const useOutsideClick = (
+  ref: RefObject<HTMLDivElement | null>,
+  onOutsideClick: () => void = () => {},
+): { clickedOutside: boolean } => {
   const [clickedOutside, setClickedOutside] = useState<boolean>(false);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
+      if (!ref?.current) {
+        return;
+      }
+
       const referencesContainTarget = (): boolean => !ref.current?.contains(event.target as Node);
       const clickedOutsideReference = (ref.current && referencesContainTarget()) || false;
 
@@ -18,7 +25,7 @@ export const useOutsideClick = (ref: RefObject<HTMLDivElement>, onOutsideClick: 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref.current]);
+  }, [ref?.current]);
 
   return { clickedOutside };
 };

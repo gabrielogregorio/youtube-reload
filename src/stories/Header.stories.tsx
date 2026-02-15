@@ -1,6 +1,8 @@
+//@ts-ignore
 import { Meta, StoryObj } from '@storybook/react';
-
-import { Header } from './Header';
+//@ts-ignore
+import { fn } from 'storybook/test';
+import { Header } from './Header.jsx';
 
 const meta = {
   title: 'Example/Header',
@@ -18,10 +20,14 @@ type Story = StoryObj<typeof meta>;
 
 export const LoggedIn: Story = {
   args: {
+    onLogin: fn(),
+    onLogout: fn(),
+    onCreateAccount: fn(),
     user: {
       name: 'Jane Doe',
     },
   },
 };
 
+// @ts-ignore
 export const LoggedOut: Story = {};

@@ -21,11 +21,11 @@ describe('<GeneratePlaylist />', () => {
   it('should render a generate playlists', () => {
     const mockGenerateRandomPlaylist: Mock = vi.fn();
 
-    expect(mockGenerateRandomPlaylist).toBeCalledTimes(0);
+    expect(mockGenerateRandomPlaylist).toHaveBeenCalledTimes(0);
 
     render(<GeneratePlaylist generateRandomPlaylist={mockGenerateRandomPlaylist} />);
     fireEvent.click(screen.getByRole('button', { name: 'Gerar Playlist' }));
 
-    expect(mockGenerateRandomPlaylist).toBeCalledTimes(1);
+    expect(mockGenerateRandomPlaylist).toHaveBeenCalledTimes(1);
   });
 });
