@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
   <head>
-    <meta name="language" content="pt-BR" />
     <meta charset="UTF-8" />
     <meta name="theme-color" content="#2d3036" />
 
@@ -30,19 +29,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Youtube Reload</title>
-    <script type="module" crossorigin src="/youtube-reload/preview/dev/assets/index-a9184d15.js"></script>
-    <link rel="stylesheet" href="/youtube-reload/preview/dev/assets/index-93803ece.css">
+    <script type="module" crossorigin src="/youtube-reload/preview/dev/assets/index-19c776cd.js"></script>
+    <link rel="stylesheet" href="/youtube-reload/preview/dev/assets/index-ba155977.css">
   <link rel="manifest" href="/youtube-reload/preview/dev/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/youtube-reload/preview/dev/registerSW.js"></script></head>
   <body style="overflow-y: scroll; background-color: #2d3036" class="scrollbar">
+    <a href="#main" class="skip-link">Ir para conteúdo principal</a>
     <style>
       * {
         padding: 0;
         margin: 0;
         box-sizing: border-box;
       }
+
+      .skip-link {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        background-color: #ffffff;
+        color: #000000;
+        padding: 10px;
+        z-index: 100;
+      }
+
+      .skip-link:focus {
+        top: 0;
+      }
     </style>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root-react-youtube-reload-app"></div>
     
   </body>
+  <noscript
+    style="
+      color: white;
+      background-color: #2d3036;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 80px 10px;
+      font-family: sans-serif;
+    ">
+    <h1>Javascript não está disponível.</h1>
+    <p>Esse site precisa do Javascript para funcionar corretamente, desculpe-nos!</p>
+  </noscript>
 </html>
