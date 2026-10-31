@@ -6,6 +6,7 @@ import { appendFileSync, readFileSync, readdirSync, writeFileSync } from 'node:f
 import { setTimeout as wait } from 'node:timers/promises';
 import { Launcher } from 'chrome-launcher';
 import { launch, type Page } from 'puppeteer-core';
+import { serveTheThumbnailsLocally } from './thumbnails.mts';
 
 const BASE_URL = process.env.BASE_URL ?? 'http://127.0.0.1:5556/youtube-reload/';
 const MAX_SITE_MEMORY_IN_MB = Number(process.env.MAX_SITE_MEMORY_IN_MB ?? 300);
@@ -15,13 +16,6 @@ const TIME_FOR_THE_SCREEN_TO_SETTLE_IN_MS = 300;
 const ROUNDS_OF_USE = 5;
 const KB_IN_A_MB = 1024;
 const FIRST_TIME_FIELD_AFTER_THE_NAME = 11;
-const THUMBNAIL_HOST = 'img.youtube.com';
-
-// Same dimensions as the real thumbnails: an image takes memory by width and height, not by file size.
-const thumbnailsByName = new Map([
-  ['mqdefault.jpg', readFileSync('cypress/fixtures/thumbnail-320x180.jpg')],
-  ['hqdefault.jpg', readFileSync('cypress/fixtures/thumbnail-480x360.jpg')],
-]);
 
 if (process.platform !== 'linux') {
   throw new Error('This check reads /proc, so it only runs on Linux');
@@ -106,34 +100,6 @@ const createMonitor = (chromePid: number) => {
   return { sample, usage };
 };
 
-// The check must not depend on the network or on which thumbnails the playlist drew.
-const serveTheThumbnailsLocally = async (page: Page): Promise<void> => {
-  const siteOrigin = new URL(BASE_URL).origin;
-
-  await page.setRequestInterception(true);
-  await page.setCacheEnabled(true);
-
-  page.on('request', (request) => {
-    const url = new URL(request.url());
-    const thumbnail = url.host === THUMBNAIL_HOST ? thumbnailsByName.get(url.pathname.split('/').at(-1) ?? '') : undefined;
-
-    if (thumbnail) {
-      void request.respond({ status: 200, contentType: 'image/jpeg', headers: { 'Cache-Control': 'max-age=3600' }, body: thumbnail });
-
-      return;
-    }
-
-    if (url.protocol === 'data:' || url.origin === siteOrigin) {
-      void request.continue();
-
-      return;
-    }
-
-    unexpectedRequests.add(url.host);
-    void request.abort();
-  });
-};
-
 const clickButton = async (page: Page, scope: string, text: string): Promise<void> => {
   await page.$$eval(
     `${scope} button`,
@@ -193,7 +159,7 @@ const startedAt = performance.now();
 try {
   const [page] = await browser.pages();
 
-  await serveTheThumbnailsLocally(page);
+  await serveTheThumbnailsLocally(page, new URL(BASE_URL).origin, unexpectedRequests);
   await page.goto(`${BASE_URL}?lang=en`, { waitUntil: 'networkidle2' });
 
   for (let round = 0; round < ROUNDS_OF_USE; round += 1) {

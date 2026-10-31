@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Welcome" />
+
+# 🎵 Youtube Reload
+
+The real components of [Youtube Reload](https://gabrielogregorio.github.io/youtube-reload/), with the same styles,
+store and translations as the site.
+
+## What you can do here
+
+- **Change the language** in the toolbar: every story runs through the real i18n, in English or Brazilian Portuguese.
+- **Check accessibility** in the Accessibility panel, which runs axe on the open story.
+- **Watch the interactions** in the Interactions panel: stories with a flow click through it and check the result.
+- **Open the color palette** in Foundations, with the WCAG contrast of each color worked out from the Tailwind config.
+
+## How it stays honest
+
+CI opens every story in a real browser and fails when one breaks, a flow stops working or axe finds a WCAG A or AA
+violation. Run the same check with `pnpm run e2e:storybook`.

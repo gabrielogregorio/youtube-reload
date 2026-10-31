@@ -81,6 +81,7 @@ environment of the GitHub repository; without them the app simply runs without S
 | `pnpm run e2e:ui` | Opens Cypress against the development server |
 | `pnpm run e2e:built` | The same run over an existing build |
 | `pnpm run e2e:lighthouse` | Lighthouse only, over an existing build |
+| `pnpm run e2e:storybook` | Builds the Storybook and checks every story in a real browser |
 | `pnpm run e2e:resources` | RAM and CPU monitor only, over an existing build |
 | `pnpm run lint` | ESLint and TypeScript, Cypress included |
 | `pnpm run lint:fix` | ESLint with automatic fixes |
@@ -115,6 +116,9 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
 - **Network:** the catalog is local and the E2E specs and the resource monitor serve the thumbnails from
   `cypress/fixtures`, with the same dimensions as the real ones. Only Lighthouse loads the real images.
 - **Accessibility:** axe on every screen and at six viewport sizes. Notes in [docs/accessibility.md](docs/accessibility.md).
+- **Storybook:** real components with the store, the styles and the i18n of the site, a language switch in the toolbar
+  and the color palette with its WCAG contrast. `scripts/storybook-check.mts` opens every story and docs page in a real
+  browser and fails on a render error, a broken flow or a WCAG A or AA violation.
 - **Lighthouse:** `scripts/lighthouse.mts` requires at least 90 in accessibility, best practices and SEO.
 - **RAM and CPU:** `scripts/resource-usage.mts` uses the site in a real Chrome and reads the processes from `/proc`, so
   it needs Linux. It fails when the renderer processes, which hold the site, peak above 300 MB of proportional memory

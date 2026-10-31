@@ -52,6 +52,7 @@ const projectRules = {
       minLength: 3,
       skipWords: [
         'tsconfig',
+        'luminance',
         'workbox',
         'denylist',
         'youtube',
@@ -209,7 +210,7 @@ export default tseslint.config(
   ...storybook.configs['flat/recommended'],
   {
     files: ['src/stories/**'],
-    rules: { 'sonarjs/no-commented-code': 'off', 'react/prop-types': 'off' },
+    rules: { 'sonarjs/no-commented-code': 'off', 'react/prop-types': 'off', 'no-magic-numbers': 'off' },
   },
   prettierRecommended,
 );
