@@ -7,7 +7,12 @@ const BASE_URL = process.env.BASE_URL ?? 'http://127.0.0.1:5556/youtube-reload/'
 const REPORT_FILE = 'lighthouseReport.html';
 const MAX_FIRST_CONTENTFUL_PAINT_IN_MS = 30000;
 
-const minimumScores = { accessibility: 90, 'best-practices': 90, seo: 90, performance: 40 };
+const minimumScores = new Map([
+  ['accessibility', 90],
+  ['best-practices', 90],
+  ['seo', 90],
+  ['performance', 40],
+]);
 
 const chrome = await launch({ chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu'] });
 
@@ -16,7 +21,7 @@ try {
     port: chrome.port,
     output: 'html',
     logLevel: 'error',
-    onlyCategories: Object.keys(minimumScores),
+    onlyCategories: [...minimumScores.keys()],
     formFactor: 'desktop',
     screenEmulation: { disabled: true },
     throttling: { rttMs: 40, throughputKbps: 11024, cpuSlowdownMultiplier: 1 },
@@ -24,8 +29,10 @@ try {
 
   writeFileSync(REPORT_FILE, report);
 
-  const failures = Object.entries(minimumScores).flatMap(([category, minimum]) => {
-    const score = Math.round((lhr.categories[category].score ?? 0) * 100);
+  const categories = new Map(Object.entries(lhr.categories));
+
+  const failures = [...minimumScores].flatMap(([category, minimum]) => {
+    const score = Math.round((categories.get(category)?.score ?? 0) * 100);
     console.log(`${category}: ${score} (minimum ${minimum})`);
 
     return score < minimum ? [`${category} ${score} < ${minimum}`] : [];

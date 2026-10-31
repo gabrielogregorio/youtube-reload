@@ -43,18 +43,23 @@ Each visit shuffles a catalog of songs into a new playlist of 25 cards. Every ca
 
 1. Install [nvm](https://github.com/nvm-sh/nvm), Node 24 and Corepack (which brings the pnpm version from
    `package.json`). The E2E tests also need Google Chrome:
+
    ```bash
    nvm install 24
    corepack enable
    ```
+
 2. Clone and install:
+
    ```bash
    git clone https://github.com/gabrielogregorio/youtube-reload.git
    cd youtube-reload
    nvm use
    pnpm install
    ```
+
 3. Check it and run it on <http://localhost:5173/youtube-reload/>:
+
    ```bash
    pnpm run unit:coverage
    pnpm run dev

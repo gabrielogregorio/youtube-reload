@@ -33,5 +33,6 @@ including quotes, special dates, notifications and date formats.
 ### Tests and CI
 
 100% unit coverage enforced by thresholds, from 5 tests to 174. New CI following the devkit projects: actions pinned
-to a hash, CodeQL, Dependabot and releases from `package.json`. The deploy now waits for the tests. Codacy and Bearer
-were removed.
+to a hash, CodeQL, Dependabot and releases from `package.json`. The deploy now waits for the tests. The Codacy and
+Bearer workflows were removed. ESLint runs only in CI with the project config, and `.codacy.yml` keeps Codacy's own
+ESLint and Markdown checks out of the way.
