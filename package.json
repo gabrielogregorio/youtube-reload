@@ -5,8 +5,8 @@
   "private": false,
   "main": "build/index.js",
   "engines": {
-    "pnpm": ">=10.29.3",
-    "node": ">=20.x"
+    "node": ">=24.0.0",
+    "pnpm": ">=10.29.3"
   },
   "packageManager": "pnpm@10.29.3",
   "scripts": {
@@ -27,7 +27,6 @@
     "lint": "eslint -c ./.eslintrc.js --fix && tsc -p .",
     "format:check": "prettier src/**/*.{ts,js,md,tsx,jsx} --check",
     "clear:env": "rm -rf build coverage lighthouseReport.html tsconfig.tsbuildinfo",
-    "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "deploy": "gh-pages -d build",
@@ -71,8 +70,6 @@
     "@axe-core/react": "^4.9.1",
     "@badeball/cypress-cucumber-preprocessor": "24.0.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
-    "@commitlint/cli": "^20.4.1",
-    "@commitlint/config-conventional": "^20.4.1",
     "@cypress-audit/lighthouse": "^1.4.2",
     "@cypress-audit/pa11y": "^1.4.2",
     "@storybook/addon-docs": "^10.2.8",
@@ -103,7 +100,6 @@
     "cypress-axe": "^1.5.0",
     "cypress-plugin-tab": "^1.0.5",
     "cypress-real-events": "^1.11.0",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.30.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-cypress": "^0.28.0",
@@ -121,9 +117,7 @@
     "eslint-plugin-spellcheck": "^0.0.20",
     "eslint-plugin-storybook": "^10.2.8",
     "gh-pages": "^6.3.0",
-    "husky": "^9.1.7",
     "jsdom": "^28.1.0",
-    "lint-staged": "^16.2.7",
     "pa11y": "^9.1.0",
     "postcss": "^8.4.19",
     "prettier": "^3.8.1",
