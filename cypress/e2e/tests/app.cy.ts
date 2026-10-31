@@ -19,6 +19,18 @@ context('<App /> ', () => {
     cy.get('main li').should('have.length', 1);
   });
 
+  // Tailwind 4 keeps its utilities in a cascade layer: any unlayered reset, even inline in
+  // index.html, silently removes every padding and margin from the page.
+  it('should keep the Tailwind spacing', () => {
+    cy.get('nav button').first().should('have.css', 'padding-left', '20px');
+    cy.get('main button:contains("Like")').first().should('have.css', 'padding-left', '15px');
+    cy.get('section[aria-label="Suggestions"]').then(($section) => {
+      const { left, right } = $section[0].getBoundingClientRect();
+
+      expect(left).to.be.closeTo(Cypress.config('viewportWidth') - right, 20);
+    });
+  });
+
   it('should change the language and keep it after reloading', () => {
     cy.get('nav button:contains("Home")').should('exist');
     cy.get('html').should('have.attr', 'lang', 'en');
