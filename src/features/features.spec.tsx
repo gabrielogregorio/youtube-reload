@@ -186,6 +186,23 @@ describe('<Notify />', () => {
     expect(screen.queryByRole('dialog')).toBeNull();
   });
 
+  it('should cover the page while open and close on a click over it', async () => {
+    await openBell();
+
+    expect(document.getElementById('notify-backdrop')).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Open notifications, 1 new' }));
+
+    const backdrop = document.getElementById('notify-backdrop');
+
+    expect(backdrop).toHaveAttribute('aria-hidden', 'true');
+
+    fireEvent.mouseDown(backdrop as HTMLElement);
+
+    expect(screen.queryByRole('dialog')).toBeNull();
+    expect(document.getElementById('notify-backdrop')).toBeNull();
+  });
+
   it('should mark everything as viewed after a few seconds', async () => {
     await openBell();
     vi.useFakeTimers();

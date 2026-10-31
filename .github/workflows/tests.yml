@@ -27,7 +27,7 @@ jobs:
         run: pnpm run unit:coverage
 
   e2e:
-    name: E2E Tests (Cypress, axe and Lighthouse)
+    name: E2E Tests (Cypress, axe, Lighthouse and resource usage)
     needs: unit
     timeout-minutes: 15
     runs-on: ubuntu-24.04
@@ -37,7 +37,7 @@ jobs:
         with:
           e2e: 'true'
 
-      - name: Run the production build against Cypress and Lighthouse
+      - name: Run the production build against Cypress, Lighthouse and the resource monitor
         run: pnpm run e2e
 
       - name: Upload the failure screenshots
@@ -48,6 +48,7 @@ jobs:
           path: |
             cypress/screenshots
             lighthouseReport.html
+            resourceUsageReport.json
           if-no-files-found: ignore
           retention-days: 14
 
@@ -68,11 +69,15 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: ./.github/actions/setup-environment
 
-      - name: Build the app
+      - name: Build the app, the Storybook and the coverage report
         run: |
           node scripts/write-env.mjs
           pnpm run build
           cp build/index.html build/404.html
+          pnpm run build-storybook
+          pnpm run unit:coverage
+          cp -r storybook-static build/storybook
+          cp -r coverage build/coverage
 
       - name: Publish to gh-pages
         env:

@@ -330,6 +330,9 @@ importers:
       prettier:
         specifier: ^3.9.10
         version: 3.9.10
+      puppeteer-core:
+        specifier: 25.16.0
+        version: 25.16.0(yauzl@3.4.0)
       rollup:
         specifier: ^4.66.0
         version: 4.66.0

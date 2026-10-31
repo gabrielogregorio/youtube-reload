@@ -12,6 +12,10 @@ context('<App /> ', () => {
 
     cy.get('h4:contains("Special quotes system created")').should('exist');
 
+    cy.get('#notify-backdrop').should('be.visible').click();
+
+    cy.get('h3:contains("Notifications")').should('not.exist');
+
     cy.get('main button:contains("Like")').first().click();
 
     cy.get('nav button:contains("Likes")').first().click();

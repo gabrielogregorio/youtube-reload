@@ -4,7 +4,7 @@
 
 **Generate playlists with songs you have never heard, and keep the ones you like. No account, no server, nothing to install.**
 
-[**See it live »**](https://gabrielogregorio.github.io/youtube-reload/)
+[**See it live »**](https://gabrielogregorio.github.io/youtube-reload/) · [Storybook](https://gabrielogregorio.github.io/youtube-reload/storybook/) · [Coverage](https://gabrielogregorio.github.io/youtube-reload/coverage/)
 
 ![Node](https://img.shields.io/badge/Node-24-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![pnpm](https://img.shields.io/badge/pnpm-12-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
@@ -18,7 +18,7 @@
 ![Storybook](https://img.shields.io/badge/Storybook-10-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-2E7D32?style=for-the-badge)
 ![Languages](https://img.shields.io/badge/UI-en%20%7C%20pt--BR-555555?style=for-the-badge)
-![License](https://img.shields.io/badge/license-Unlicense-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
 
 [![Tests](https://github.com/gabrielogregorio/youtube-reload/actions/workflows/tests.yml/badge.svg)](https://github.com/gabrielogregorio/youtube-reload/actions/workflows/tests.yml)
 [![Lint](https://github.com/gabrielogregorio/youtube-reload/actions/workflows/check-quality.yml/badge.svg)](https://github.com/gabrielogregorio/youtube-reload/actions/workflows/check-quality.yml)
@@ -77,9 +77,10 @@ environment of the GitHub repository; without them the app simply runs without S
 | `pnpm run preview` | Serves the production build |
 | `pnpm run unit` | Unit tests in watch mode |
 | `pnpm run unit:coverage` | Unit tests once; fails below 100% coverage |
-| `pnpm run e2e` | Builds, then runs every Cypress spec and Lighthouse |
+| `pnpm run e2e` | Builds, then runs every Cypress spec, Lighthouse and the resource monitor |
 | `pnpm run e2e:ui` | Opens Cypress against the development server |
 | `pnpm run e2e:lighthouse` | Lighthouse only, over an existing build |
+| `pnpm run e2e:resources` | RAM and CPU monitor only, over an existing build |
 | `pnpm run lint` | ESLint and TypeScript, Cypress included |
 | `pnpm run lint:fix` | ESLint with automatic fixes |
 | `pnpm run format` | Prettier |
@@ -112,12 +113,16 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
   service worker off, otherwise the machine locale and the PWA cache change the result.
 - **Accessibility:** axe on every screen and at six viewport sizes. Notes in [docs/accessibility.md](docs/accessibility.md).
 - **Lighthouse:** `scripts/lighthouse.mjs` requires at least 90 in accessibility, best practices and SEO.
+- **RAM and CPU:** `scripts/resource-usage.mjs` uses the site in a real Chrome and reads the processes from `/proc`, so
+  it needs Linux. It fails when the renderer processes, which hold the site, peak above 300 MB of proportional memory
+  (PSS). The whole Chrome and the CPU are only reported, because they depend on the browser and on the machine.
+  `MAX_SITE_MEMORY_IN_MB` changes the limit. On CI the numbers also go to the job summary.
 
 ## CI/CD
 
 | Workflow | When | What |
 |---|---|---|
-| `tests.yml` | push and PR to `main` and `dev` | Unit, then E2E; a push to `main` then deploys to GitHub Pages |
+| `tests.yml` | push and PR to `main` and `dev` | Unit, then E2E; a push to `main` then deploys the app, the Storybook and the coverage report to GitHub Pages |
 | `check-quality.yml` | push and PR to `main` and `dev` | Lint, types, Prettier, `pnpm audit`, actions pinned to a hash |
 | `codeql-analysis.yml` | push and PR to `main`, weekly | CodeQL on the code and on the workflows |
 | `deploy-preview.yml` | PR | Publishes the app and the Storybook of the branch and links them on the PR |
@@ -129,4 +134,4 @@ Dependabot updates the npm packages and the actions monthly. Dependency rules an
 
 ## License
 
-[The Unlicense](LICENSE): public domain.
+[MIT](LICENSE).
