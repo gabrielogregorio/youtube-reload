@@ -4,7 +4,7 @@
 
 **Generate playlists with songs you have never heard, and keep the ones you like. No account, no server, nothing to install.**
 
-[**See it live »**](https://gabrielogregorio.github.io/youtube-reload/)
+[**See it live »**](https://gabrielogregorio.github.io/youtube-reload/) · [Storybook](https://gabrielogregorio.github.io/youtube-reload/storybook/) · [Coverage](https://gabrielogregorio.github.io/youtube-reload/coverage/)
 
 ![Node](https://img.shields.io/badge/Node-24-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![pnpm](https://img.shields.io/badge/pnpm-12-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
@@ -117,7 +117,7 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
 
 | Workflow | When | What |
 |---|---|---|
-| `tests.yml` | push and PR to `main` and `dev` | Unit, then E2E; a push to `main` then deploys to GitHub Pages |
+| `tests.yml` | push and PR to `main` and `dev` | Unit, then E2E; a push to `main` then deploys the app, the Storybook and the coverage report to GitHub Pages |
 | `check-quality.yml` | push and PR to `main` and `dev` | Lint, types, Prettier, `pnpm audit`, actions pinned to a hash |
 | `codeql-analysis.yml` | push and PR to `main`, weekly | CodeQL on the code and on the workflows |
 | `deploy-preview.yml` | PR | Publishes the app and the Storybook of the branch and links them on the PR |

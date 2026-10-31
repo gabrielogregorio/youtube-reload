@@ -34,6 +34,9 @@ export default defineConfig(({ mode }) => {
           injectRegister: 'auto',
           manifestFilename: 'manifest.webmanifest',
 
+          // these paths are separate sites on the same domain, not routes of the app
+          workbox: { navigateFallbackDenylist: [/\/preview\//, /\/storybook\//, /\/coverage\//] },
+
           includeAssets: ['favicon.ico', 'icon.png', 'icon-512x512.png'],
 
           manifest: {

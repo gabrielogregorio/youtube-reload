@@ -52,6 +52,8 @@ const projectRules = {
       minLength: 3,
       skipWords: [
         'tsconfig',
+        'workbox',
+        'denylist',
         'youtube',
         'enum',
         'unlikes',
