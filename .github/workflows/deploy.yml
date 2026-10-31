@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to GitHub Pages
+    environment: sentry
+    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      VITE_ENVIRONMENT: production
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup-environment
+
+      - name: Build the app
+        run: |
+          node scripts/write-env.mts
+          pnpm run build
+          cp build/index.html build/404.html
+
+      - uses: ./.github/actions/publish-pages
+        with:
+          directory: build
+          token: ${{ secrets.GITHUB_TOKEN }}

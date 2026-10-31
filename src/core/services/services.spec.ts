@@ -7,6 +7,7 @@ import { StorageAccessNameEnum, StorageService } from '@/services/StorageService
 import { UserService } from '@/services/UserService';
 
 vi.mock('@sentry/react');
+vi.mock('@/core/env', () => ({ envs: { VITE_ENVIRONMENT: '', TIME_BUILD: '', SENTRY_DSN: '', VERSION: '' } }));
 
 describe('StorageService', () => {
   it('should save, read and remove an item', () => {

@@ -6,6 +6,7 @@ import { appendFileSync, readFileSync, readdirSync, writeFileSync } from 'node:f
 import { setTimeout as wait } from 'node:timers/promises';
 import { Launcher } from 'chrome-launcher';
 import { launch, type Page } from 'puppeteer-core';
+import { serveTheThumbnailsLocally } from './thumbnails.mts';
 
 const BASE_URL = process.env.BASE_URL ?? 'http://127.0.0.1:5556/youtube-reload/';
 const MAX_SITE_MEMORY_IN_MB = Number(process.env.MAX_SITE_MEMORY_IN_MB ?? 300);
@@ -136,6 +137,8 @@ const useTheSite = async (page: Page): Promise<void> => {
   await page.evaluate('window.scrollTo(0, 0)');
 };
 
+const unexpectedRequests = new Set<string>();
+
 const browser = await launch({
   executablePath: Launcher.getFirstInstallation(),
   headless: true,
@@ -156,6 +159,7 @@ const startedAt = performance.now();
 try {
   const [page] = await browser.pages();
 
+  await serveTheThumbnailsLocally(page, new URL(BASE_URL).origin, unexpectedRequests);
   await page.goto(`${BASE_URL}?lang=en`, { waitUntil: 'networkidle2' });
 
   for (let round = 0; round < ROUNDS_OF_USE; round += 1) {
@@ -176,6 +180,7 @@ const report = {
   peakCpuPercentOfOneCore: Math.round(usage.peakCpuPercent),
   averageCpuPercentOfOneCore: Math.round((usage.cpuSeconds / durationInSeconds) * 100),
   durationInSeconds: Math.round(durationInSeconds),
+  unexpectedHosts: [...unexpectedRequests],
 };
 
 writeFileSync(REPORT_FILE, `${JSON.stringify(report, null, 2)}\n`);
@@ -198,6 +203,11 @@ if (process.env.GITHUB_STEP_SUMMARY) {
       '',
     ].join('\n'),
   );
+}
+
+if (unexpectedRequests.size > 0) {
+  console.error(`The site called hosts that are not mocked: ${[...unexpectedRequests].join(', ')}`);
+  process.exitCode = 1;
 }
 
 if (report.peakSiteMemoryInMb > MAX_SITE_MEMORY_IN_MB) {

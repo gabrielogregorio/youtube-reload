@@ -28,6 +28,16 @@
 
 </div>
 
+## Links
+
+| What | Where | Published by |
+|---|---|---|
+| Site | <https://gabrielogregorio.github.io/youtube-reload/> | `deploy.yml` |
+| Storybook | <https://gabrielogregorio.github.io/youtube-reload/storybook/> | `deploy-storybook.yml` |
+| Coverage report | <https://gabrielogregorio.github.io/youtube-reload/coverage/> | `tests.yml` |
+| Site of a PR | `https://gabrielogregorio.github.io/youtube-reload/preview/<branch>/` | `deploy-preview.yml` |
+| Storybook of a PR | `https://gabrielogregorio.github.io/youtube-reload/storybook/<branch>/` | `deploy-storybook.yml` |
+
 ## About
 
 Each visit shuffles a catalog of songs into a new playlist of 25 cards. Every card opens the song on YouTube, and
@@ -79,7 +89,9 @@ environment of the GitHub repository; without them the app simply runs without S
 | `pnpm run unit:coverage` | Unit tests once; fails below 100% coverage |
 | `pnpm run e2e` | Builds, then runs every Cypress spec, Lighthouse and the resource monitor |
 | `pnpm run e2e:ui` | Opens Cypress against the development server |
+| `pnpm run e2e:built` | The same run over an existing build |
 | `pnpm run e2e:lighthouse` | Lighthouse only, over an existing build |
+| `pnpm run e2e:storybook` | Builds the Storybook and checks every story in a real browser |
 | `pnpm run e2e:resources` | RAM and CPU monitor only, over an existing build |
 | `pnpm run lint` | ESLint and TypeScript, Cypress included |
 | `pnpm run lint:fix` | ESLint with automatic fixes |
@@ -111,7 +123,12 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
 - **E2E (Cypress + Cucumber):** the production build, with commemorative dates on a mocked clock, notifications,
   language switching and a guard against Tailwind losing its spacing. The specs fix the browser language and turn the
   service worker off, otherwise the machine locale and the PWA cache change the result.
+- **Network:** the catalog is local and the E2E specs and the resource monitor serve the thumbnails from
+  `cypress/fixtures`, with the same dimensions as the real ones. Only Lighthouse loads the real images.
 - **Accessibility:** axe on every screen and at six viewport sizes. Notes in [docs/accessibility.md](docs/accessibility.md).
+- **Storybook:** real components with the store, the styles and the i18n of the site, a language switch in the toolbar
+  and the color palette with its WCAG contrast. `scripts/storybook-check.mts` opens every story and docs page in a real
+  browser and fails on a render error, a broken flow or a WCAG A or AA violation.
 - **Lighthouse:** `scripts/lighthouse.mts` requires at least 90 in accessibility, best practices and SEO.
 - **RAM and CPU:** `scripts/resource-usage.mts` uses the site in a real Chrome and reads the processes from `/proc`, so
   it needs Linux. It fails when the renderer processes, which hold the site, peak above 300 MB of proportional memory
@@ -122,10 +139,12 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
 
 | Workflow | When | What |
 |---|---|---|
-| `tests.yml` | push and PR to `main` and `dev` | Unit, then E2E; a push to `main` then deploys the app, the Storybook and the coverage report to GitHub Pages |
+| `tests.yml` | PR to `main` and merge | Unit, then E2E over its own build; the merge also publishes the coverage report |
+| `deploy.yml` | Merge into `main` | Builds and publishes the app right away. It does not wait for the tests |
+| `deploy-storybook.yml` | Merge into `main` and PR | Builds and publishes the Storybook on its own |
 | `check-quality.yml` | push and PR to `main` and `dev` | Lint, types, Prettier, `pnpm audit`, actions pinned to a hash |
 | `codeql-analysis.yml` | push and PR to `main`, weekly | CodeQL on the code and on the workflows |
-| `deploy-preview.yml` | PR | Publishes the app and the Storybook of the branch and links them on the PR |
+| `deploy-preview.yml` | PR | Publishes the app of the branch and links it and its Storybook on the PR |
 | `auto-complete-fields.yml` | PR to `main` | Checks the version is new, assigns, labels and fills the changelog |
 | `create-tag-and-release.yml` | PR merged into `main` | Creates the tag `vX.Y.Z` from `package.json` and the release |
 
