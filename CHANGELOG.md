@@ -2,6 +2,12 @@
 
 What changed and **why**. Releases also get notes on GitHub (`create-tag-and-release.yml`).
 
+## 5.1.3 - 2026-10-31
+
+- Added the agent guide, the contribution guide, the code of conduct, the support page and how to report a vulnerability,
+  with the lessons of this release written down in `CLAUDE.md`.
+- Added a Markdown issue template, because GitHub leaves issue forms out of the community health score.
+
 ## 5.1.2 - 2026-10-31
 
 - The Storybook shows the real components instead of the samples from its install, with a language switch, an accessibility

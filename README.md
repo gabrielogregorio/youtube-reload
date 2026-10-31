@@ -151,6 +151,11 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
 Dependabot updates the npm packages and the actions monthly. Dependency rules and accepted risks are in
 [docs/security.md](docs/security.md).
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md), the [code of conduct](CODE_OF_CONDUCT.md), [support](docs/support.md) and the
+[security policy](docs/security.md).
+
 ## License
 
 [MIT](LICENSE).
