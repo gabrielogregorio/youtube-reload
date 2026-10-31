@@ -71,11 +71,11 @@ jobs:
 
       - name: Build the app, the Storybook and the coverage report
         run: |
+          pnpm run unit:coverage
           node scripts/write-env.mts
           pnpm run build
           cp build/index.html build/404.html
           pnpm run build-storybook
-          pnpm run unit:coverage
           cp -r storybook-static build/storybook
           cp -r coverage build/coverage
 

@@ -2,6 +2,11 @@
 
 What changed and **why**. Releases also get notes on GitHub (`create-tag-and-release.yml`).
 
+## 5.1.2 - 2026-10-31
+
+- The deploy runs the coverage before writing the production values, and the Sentry test sets its own environment, so
+  the deploy of the Storybook and the coverage report no longer fails.
+
 ## 5.1.1 - 2026-10-31
 
 - Cards load a thumbnail of the size they show, lazily. The old 480x360 image took 0.7 MB of memory per card, so every
