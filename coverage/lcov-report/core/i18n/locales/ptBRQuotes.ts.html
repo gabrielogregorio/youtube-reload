@@ -1,0 +1,283 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for core/i18n/locales/ptBRQuotes.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">core/i18n/locales</a> ptBRQuotes.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const ptBRQuotes: Record&lt;string, string&gt; = {
+  'Napoleon Bonaparte': 'Napoleão Bonaparte',
+  'Success is born from wanting it, from the determination and persistence to reach a goal. Even without hitting the target, whoever seeks and overcomes obstacles will at the very least do admirable things':
+    'O sucesso nasce do querer, da determinação e persistência em se chegar a um objetivo. Mesmo não atingindo o alvo, quem busca e vence obstáculos, no mínimo fará coisas admiráveis',
+  'If you want to be successful you need total dedication, to look for your last limit and give the best of yourself':
+    'Se você quer ser bem-sucedido precisa de dedicação total, buscar seu último limite e dar o melhor de si mesmo',
+  'Do not set limits for yourself. You must go as far as your mind allows. What you want most can be achieved':
+    'Não crie limites para si mesmo. Você deve ir tão longe quanto sua mente permitir. O que você mais quer pode ser conquistado',
+  'Hardships prepare ordinary people for an extraordinary destiny': 'Dificuldades preparam pessoas comuns para destinos extraordinários',
+  'No man will make a great leader who wants to do it all himself or to get all the credit for doing it':
+    'Nenhum homem será um grande líder se quiser fazer tudo sozinho ou se quiser levar todo o crédito por fazer isso',
+  'There are only two days in the year when you cannot do anything: one is called yesterday and the other tomorrow':
+    'Só existem dois dias do ano em que você não pode fazer nada: um se chama ontem e outro amanhã',
+  'Dare to go beyond, dare to do things differently and the power will be given to you!':
+    'Ouse ir além, ouse fazer diferente e o poder lhe será dado!',
+  'Dare, take risks, never give up and know how to value those who love you, they are the ones who deserve your respect. As for the rest, well, nobody ever needed leftovers to be happy':
+    'Ouse, arrisque, não desista jamais e saiba valorizar quem te ama, esses sim merecem seu respeito. Quanto ao resto, bom, ninguém nunca precisou de restos para ser feliz',
+  'To be a champion you have to believe in yourself when nobody else does':
+    'Para ser um campeão você tem que acreditar em si mesmo quando ninguém mais acredita',
+  'You never know what results will come from your action. But if you do nothing, there will be no results':
+    'Você nunca sabe que resultados virão da sua ação. Mas se você não fizer nada, não existirão resultados',
+  'A pessimist sees the difficulty in every opportunity. An optimist sees the opportunity in every difficulty':
+    'O pessimista vê dificuldade em toda oportunidade. O otimista vê oportunidade em toda dificuldade',
+  'Patience is a key element of success': 'A paciência é um elemento fundamental do sucesso',
+  'Complaining is not a strategy. We have to deal with the world as it is, not as we would like it to be':
+    'Reclamar não é uma estratégia. É necessário lidarmos com o mundo como ele é e não como gostaríamos que ele fosse',
+  'Success has nothing to do with where you came from, but with the confidence you have and the effort you are willing to invest':
+    'O sucesso não tem a ver com o lugar de onde você veio, e sim com a confiança que você tem e o esforço que você está disposto a investir',
+  'You can see a mistake as nonsense to be forgotten, or as a result that points to a new direction':
+    'Você pode encarar um erro como uma besteira a ser esquecida, ou como um resultado que aponta uma nova direção',
+  'I can accept failure, everyone fails at something. But I cannot accept not trying':
+    'Eu posso aceitar a falha, todos falham em alguma coisa. Mas eu não posso aceitar não tentar',
+  'Intelligence is the ability to adapt to change': 'Inteligência é a capacidade de se adaptar às mudanças',
+  'Our failures are sometimes more fruitful than our successes': 'Nossos fracassos, às vezes, são mais frutíferos do que os êxitos',
+  'I would like you to know that there is a force within you capable of changing your life. You only need to fight and wait for a new dawn':
+    'Gostaria que você soubesse que existe dentro de si uma força capaz de mudar sua vida. Basta que lute e aguarde um novo amanhecer',
+  'You have to be the protagonist. You cannot just listen to the band go by, we have to be part of the band':
+    'É preciso ser protagonista. Não dá para ficar só ouvindo a banda passar, temos de ser parte da banda',
+  'The art of being sometimes bold and sometimes prudent is the art of winning':
+    'A arte de ser ora audacioso, ora prudente, é a arte de vencer',
+  'You only learn from experience. So no matter what people tell you, you have to live and make your own mistakes to learn':
+    'Só se aprende com a experiência. Portanto, não importa o que as pessoas lhe digam, você tem que viver e cometer seus próprios erros para aprender',
+  'Every company needs people who make mistakes, who are not afraid of making them and who learn from them':
+    'Toda empresa precisa ter gente que erra, que não tem medo de errar e que aprende com erro',
+  'When you stumble, keep the faith. When you are knocked down, get right back up. Do not listen to anyone who says you cannot or should not go on':
+    'Quando você tropeçar, mantenha a fé. Quando for nocauteado, levante rápido. Não ouça quem diz que você não pode ou não deve continuar',
+  'Only those who dare to fail greatly can ever achieve greatly': 'Somente os que ousam errar muito podem realizar muito',
+  'You must do the thing you think you cannot do': 'Você precisa fazer aquilo que pensa que não é capaz de fazer',
+  'Do what you can, with what you have, where you are': 'Faça o que puder, com o que tiver, onde estiver',
+  'Remember that not getting what you want is sometimes a stroke of luck':
+    'Lembre-se que não conseguir o que você quer é algumas vezes um lance de sorte',
+  'Our doubts are traitors and make us lose what we could win by fearing to try':
+    'Nossas dúvidas são traidoras e nos fazem perder, por medo de tentar, o que poderíamos ganhar',
+  'It is always fun to do the impossible': 'É sempre divertido fazer o impossível',
+  'Failure is an opportunity to begin again more intelligently': 'O insucesso é uma oportunidade para recomeçar com mais inteligência',
+  'Do not find fault, find a remedy. Anybody can complain': 'Não encontre defeitos, encontre soluções. Qualquer um sabe queixar-se',
+  'In adversity, some give up while others break records': 'Na adversidade, uns desistem, enquanto outros batem recordes',
+  'I have no idols. I admire work, dedication and competence': 'Eu não tenho Ídolos. Tenho admiração por trabalho, dedicação e competência',
+  "Your time is limited, so do not waste it living someone else's life":
+    'Seu tempo é limitado, então não perca tempo vivendo a vida de outra pessoa',
+  'Great spirits have always encountered violent opposition from mediocre minds':
+    'Espíritos grandiosos sempre encontraram oposição violenta de mentes medíocres',
+  'Inventions are the result of stubborn work': 'As invenções são o resultado de um trabalho teimoso',
+  'Strive not to be a success, but rather to be of value': 'Esforce-se para não ser um sucesso, mas sim para ser valioso',
+  'A person who never made a mistake never tried anything new': 'Uma pessoa que nunca cometeu um erro, nunca tentou nada de novo',
+};
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-10-31T16:00:42.762Z
+            </div>
+        <script src="../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
+    </body>
+</html>
+    
