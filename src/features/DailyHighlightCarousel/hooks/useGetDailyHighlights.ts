@@ -6,8 +6,8 @@ import { shuffleArray } from '@/utils/shuffleArray';
 import { useState } from 'react';
 
 const defaultSpecialDay: ISpecialDate = {
-  title: 'Bem vindo',
-  description: 'Aqui você pode conhecer músicas perdidas (ou não)',
+  title: 'Welcome',
+  description: 'Here you can discover lost songs (or not)',
   days: [],
   emoji1: '🕵',
   emoji2: '',
@@ -52,7 +52,6 @@ export const useGetDailyHighlights = () => {
   const prevDailyHighlight = () => {
     setDailyHighlightSelected((prev) => {
       if (prev - 1 < 0) {
-        // refactor magic numbers
         return dailyHighlights.length - 1;
       }
       return prev - 1;

@@ -4,12 +4,8 @@ import { ApiReload } from '@/modules/musicCards/services/api/Reload';
 
 export class FetchNotifyService {
   public static async fetch(): Promise<NotifyFromApiMapper[]> {
-    return ApiReload.searchNotify()
-      .then((res: INotifyApi[]) => {
-        return NotifyMapper.fromApi(res);
-      })
-      .catch((error: unknown) => {
-        throw error;
-      });
+    return ApiReload.searchNotify().then((res: INotifyApi[]) => {
+      return NotifyMapper.fromApi(res);
+    });
   }
 }

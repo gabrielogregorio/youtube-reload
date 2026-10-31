@@ -3,6 +3,7 @@ export enum StorageAccessNameEnum {
   Profile = 'profile',
   Notify = 'notify',
   UserId = 'UserId',
+  Language = 'language',
 }
 
 export class StorageService {

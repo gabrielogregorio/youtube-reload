@@ -73,6 +73,8 @@ const projectRules = {
         'tailwindcss',
         'argv',
         'Dom',
+        'lang',
+        'unstub',
         'globals',
       ],
     },

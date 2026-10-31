@@ -51,8 +51,8 @@ export class DateReload {
     return date.toUTCString();
   }
 
-  public static convertGmtToTimezoneSaoPauloAndPtBrStyle(dateGmt: string) {
-    return new Date(dateGmt).toLocaleString('pt', {
+  public static formatGmtInSaoPauloTimezone(dateGmt: string, language: string) {
+    return new Date(dateGmt).toLocaleString(language, {
       timeZone: 'America/Sao_Paulo',
       dateStyle: 'full',
     });

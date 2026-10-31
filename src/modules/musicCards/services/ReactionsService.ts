@@ -29,9 +29,4 @@ export class ReactionsService {
   public static updateReactions(reactions: IReactionsOptions) {
     StorageService.setItem(StorageAccessNameEnum.Reactions, JSON.stringify(reactions));
   }
-
-  public static clearAll() {
-    StorageService.removeItem(StorageAccessNameEnum.Reactions);
-    document.location.reload();
-  }
 }

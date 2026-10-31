@@ -1,5 +1,3 @@
-import { DateReload } from '@/utils/date';
-
 export interface INotifyApi {
   id: number;
   title: string;
@@ -19,7 +17,7 @@ export class NotifyFromApiMapper {
   public constructor(data?: INotifyApi) {
     this.id = data?.id || 0;
     this.title = data?.title || '';
-    this.date = DateReload.convertGmtToTimezoneSaoPauloAndPtBrStyle(data?.date || '');
+    this.date = data?.date || '';
     this.emoji = data?.emoji || '';
   }
 }

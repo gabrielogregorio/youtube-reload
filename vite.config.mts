@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         // bdd loader
         '@badeball/cypress-cucumber-preprocessor/*': resolve(
-          __dirname,
+          import.meta.dirname,
           './node_modules/@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/*',
         ),
 
@@ -126,6 +126,10 @@ export default defineConfig(({ mode }) => {
       include: ['src/**/*.{test,spec}.{ts,tsx}'],
       coverage: {
         reporter: ['text', 'json', 'html', 'lcov'],
+        include: ['src/**/*.{ts,tsx}'],
+        // entry point and test helpers run in the E2E; the stories are Storybook samples
+        exclude: ['src/index.tsx', 'src/stories/**', 'src/core/utils/mockProviders.tsx', 'src/**/*.d.ts', 'src/**/*.{spec,test}.{ts,tsx}'],
+        thresholds: { lines: 100, functions: 100, branches: 100, statements: 100 },
       },
       globals: true,
       environment: 'jsdom',

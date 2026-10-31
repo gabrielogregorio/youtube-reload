@@ -21,7 +21,7 @@ interface ILateralButtonProps {
 }
 
 export const LateralButton = ({ title, icon, action, variant, bottomPosition }: ILateralButtonProps) => {
-  const styleVariant: string = variantLateralButtonStyle[variant] || '';
+  const styleVariant: string = variantLateralButtonStyle[variant];
 
   return (
     <div className={`fixed ${bottomPosition} right-2`}>

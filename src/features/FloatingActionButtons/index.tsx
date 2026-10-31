@@ -1,5 +1,6 @@
 import { ScreenEnum } from '@/contracts/homeScreens';
 import { useCurrentScreen } from '@/hooks/useCurrentScreen';
+import { useTranslation } from '@/hooks/useTranslation';
 import { LogService } from '@/services/log/LogService';
 import { HEIGHT_IN_PX_TO_IGNORE_HEADER, moveToTop } from '@/utils/scroll';
 import { AiOutlineArrowUp } from 'react-icons/ai';
@@ -13,15 +14,16 @@ interface IFloatingActionButtonsProps {
 
 export const FloatingActionButtons = ({ generateRandomPlaylist }: IFloatingActionButtonsProps) => {
   const { updateCurrentScreen } = useCurrentScreen();
+  const { t } = useTranslation();
 
   return (
-    <aside aria-label="Menu atalhos">
+    <aside aria-label={t('Shortcuts menu')}>
       <LateralButton
         action={() => {
           LogService.addBreadcrumb({ type: 'click', level: 'info', message: 'move to top' });
           moveToTop();
         }}
-        title="Ir para cima"
+        title={t('Go to top')}
         bottomPosition="bottom-[10rem]"
         variant={LateralButtonEnum.Dark}
         icon={<AiOutlineArrowUp className="text-2xl" />}
@@ -33,7 +35,7 @@ export const FloatingActionButtons = ({ generateRandomPlaylist }: IFloatingActio
           moveToTop();
           updateCurrentScreen(ScreenEnum.likes);
         }}
-        title="ir para favoritos"
+        title={t('Go to favorites')}
         bottomPosition="bottom-[6rem]"
         variant={LateralButtonEnum.Red}
         icon={<BsBookmarkCheckFill className="text-2xl" />}
@@ -46,7 +48,7 @@ export const FloatingActionButtons = ({ generateRandomPlaylist }: IFloatingActio
           generateRandomPlaylist();
           moveToTop(HEIGHT_IN_PX_TO_IGNORE_HEADER);
         }}
-        title="gerar nova playlist"
+        title={t('Generate new playlist')}
         bottomPosition="bottom-[2rem]"
         variant={LateralButtonEnum.Blue}
         icon={<BiRefresh className="text-2xl" />}

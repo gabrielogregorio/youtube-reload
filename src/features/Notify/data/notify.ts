@@ -4,7 +4,7 @@ import { DateReload } from '@/utils/date';
 export const mockNotify: NotifyFromApiMapper[] = [
   {
     id: 10,
-    title: 'Mais 5 musicas adicionadas',
+    title: '5 more songs added',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 23,
       month1to12: 5,
@@ -17,7 +17,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
   },
   {
     id: 9,
-    title: 'Novas musicas, novo sistema de aleatóriedade',
+    title: 'New songs and a new shuffle system',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 18,
       month1to12: 2,
@@ -30,7 +30,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
   },
   {
     id: 8,
-    title: 'Mais 20 musicas adicionadas, e filtros melhorados na randomização',
+    title: '20 more songs added and better shuffle filters',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 14,
       month1to12: 4,
@@ -43,7 +43,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
   },
   {
     id: 7,
-    title: 'Novas Músicas Disponíveis e correção do sistema de filtros ',
+    title: 'New songs available and filter system fixed',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 12,
       month1to12: 3,
@@ -56,7 +56,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
   },
   {
     id: 6,
-    title: 'Cria sistema de frases especiais',
+    title: 'Special quotes system created',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 27,
       month1to12: 12,
@@ -70,7 +70,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
 
   {
     id: 5,
-    title: 'Cria sistema de datas especiais',
+    title: 'Special dates system created',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 25,
       month1to12: 12,
@@ -83,7 +83,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
   },
   {
     id: 4,
-    title: 'Cria Sistema de notificações',
+    title: 'Notification system created',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 26,
       month1to12: 12,
@@ -96,7 +96,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
   },
   {
     id: 3,
-    title: 'Cria sistema de filtros na Aba All',
+    title: 'Filter system created on the All tab',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 24,
       month1to12: 12,
@@ -109,7 +109,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
   },
   {
     id: 2,
-    title: 'Novas Músicas',
+    title: 'New songs',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 22,
       month1to12: 12,
@@ -122,7 +122,7 @@ export const mockNotify: NotifyFromApiMapper[] = [
   },
   {
     id: 1,
-    title: 'Cria atalhos na aba lateral',
+    title: 'Shortcuts created on the side bar',
     date: DateReload.createDateAsSaoPauloTimeZoneAndReturnGmt({
       day: 17,
       month1to12: 12,
