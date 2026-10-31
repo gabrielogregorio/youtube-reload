@@ -166,12 +166,16 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...jsxA11y.configs.recommended.rules,
       'react-hooks/rules-of-hooks': 'error',
+      'react/button-has-type': 'error',
       ...projectRules,
     },
   },
   {
-    files: ['scripts/**/*.mjs'],
-    languageOptions: { globals: globals.node },
+    files: ['scripts/**/*.mts'],
+    languageOptions: {
+      globals: globals.node,
+      parserOptions: { project: './tsconfig.json', tsconfigRootDir: rootDirectory },
+    },
   },
   {
     files: ['**/*.spec.ts', '**/*.spec.tsx', '**/*.test.ts', '**/*.test.tsx'],

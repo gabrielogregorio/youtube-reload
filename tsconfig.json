@@ -37,6 +37,6 @@
       "@/pages/*": ["./src/pages/*"]
     }
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./tests/**/*.ts", "./vite.config.mts"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./tests/**/*.ts", "./scripts/**/*.mts", "./vite.config.mts"],
   "exclude": ["node_modules", "./cypress.config.ts"]
 }

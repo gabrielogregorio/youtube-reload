@@ -2,6 +2,13 @@
 
 What changed and **why**. Releases also get notes on GitHub (`create-tag-and-release.yml`).
 
+## 5.1.1 - 2026-10-31
+
+- Cards load a thumbnail of the size they show, lazily. The old 480x360 image took 0.7 MB of memory per card, so every
+  new playlist added about 17 MB and the 300 MB check failed on CI, which blocked the 5.1.0 deploy.
+- The scripts are TypeScript (`.mts`) now. Node 24 runs them with no extra package.
+- ESLint requires a `type` on every `button`.
+
 ## 5.1.0 - 2026-10-31
 
 - Opening the notifications blurs and tints the page behind them, and clicking the bell again now closes the panel

@@ -97,8 +97,8 @@ The language comes from `?lang=pt-BR` in the URL, then the saved choice, then th
 ```tsx
 const { t } = useTranslation();
 
-<button>{t('Generate Playlist')}</button>;
-<button aria-label={t('Open notifications, {count} new', { count: 3 })} />;
+<button type="button">{t('Generate Playlist')}</button>;
+<button type="button" aria-label={t('Open notifications, {count} new', { count: 3 })} />;
 ```
 
 To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/index.ts`, create its dictionary in
@@ -112,8 +112,8 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
   language switching and a guard against Tailwind losing its spacing. The specs fix the browser language and turn the
   service worker off, otherwise the machine locale and the PWA cache change the result.
 - **Accessibility:** axe on every screen and at six viewport sizes. Notes in [docs/accessibility.md](docs/accessibility.md).
-- **Lighthouse:** `scripts/lighthouse.mjs` requires at least 90 in accessibility, best practices and SEO.
-- **RAM and CPU:** `scripts/resource-usage.mjs` uses the site in a real Chrome and reads the processes from `/proc`, so
+- **Lighthouse:** `scripts/lighthouse.mts` requires at least 90 in accessibility, best practices and SEO.
+- **RAM and CPU:** `scripts/resource-usage.mts` uses the site in a real Chrome and reads the processes from `/proc`, so
   it needs Linux. It fails when the renderer processes, which hold the site, peak above 300 MB of proportional memory
   (PSS). The whole Chrome and the CPU are only reported, because they depend on the browser and on the machine.
   `MAX_SITE_MEMORY_IN_MB` changes the limit. On CI the numbers also go to the job summary.

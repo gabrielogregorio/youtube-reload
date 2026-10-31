@@ -25,6 +25,10 @@ export const Card = ({ playlistLocal, sendReaction, reaction, index }: IProps) =
           <header>
             <img
               src={playlistLocal.img}
+              srcSet={playlistLocal.imgSet}
+              sizes="(min-width: 768px) 320px, 100vw"
+              loading="lazy"
+              decoding="async"
               alt=""
               role="presentation"
               draggable={false}

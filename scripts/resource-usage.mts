@@ -5,7 +5,7 @@ import { execSync } from 'node:child_process';
 import { appendFileSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { setTimeout as wait } from 'node:timers/promises';
 import { Launcher } from 'chrome-launcher';
-import { launch } from 'puppeteer-core';
+import { launch, type Page } from 'puppeteer-core';
 
 const BASE_URL = process.env.BASE_URL ?? 'http://127.0.0.1:5556/youtube-reload/';
 const MAX_SITE_MEMORY_IN_MB = Number(process.env.MAX_SITE_MEMORY_IN_MB ?? 300);
@@ -22,7 +22,7 @@ if (process.platform !== 'linux') {
 
 const clockTicksPerSecond = Number(execSync('/usr/bin/getconf CLK_TCK').toString());
 
-const readProcessFile = (pid, file) => {
+const readProcessFile = (pid: number, file: string): string => {
   try {
     return readFileSync(`/proc/${pid}/${file}`, 'utf8');
   } catch {
@@ -31,7 +31,7 @@ const readProcessFile = (pid, file) => {
   }
 };
 
-const listThreads = (pid) => {
+const listThreads = (pid: number): string[] => {
   try {
     return readdirSync(`/proc/${pid}/task`);
   } catch {
@@ -39,7 +39,7 @@ const listThreads = (pid) => {
   }
 };
 
-const listProcessTree = (pid) => {
+const listProcessTree = (pid: number): number[] => {
   const children = listThreads(pid).flatMap((thread) =>
     readProcessFile(pid, `task/${thread}/children`).trim().split(/\s+/).filter(Boolean),
   );
@@ -47,13 +47,13 @@ const listProcessTree = (pid) => {
   return [pid, ...children.flatMap((child) => listProcessTree(Number(child)))];
 };
 
-const readMemoryInMb = (pid) => {
+const readMemoryInMb = (pid: number): number => {
   const proportionalSetSize = /^Pss:\s+(\d+)/m.exec(readProcessFile(pid, 'smaps_rollup'));
 
   return proportionalSetSize ? Number(proportionalSetSize[1]) / KB_IN_A_MB : 0;
 };
 
-const readCpuTicks = (pid) => {
+const readCpuTicks = (pid: number): number => {
   const stat = readProcessFile(pid, 'stat');
   const fieldsAfterTheName = stat.slice(stat.lastIndexOf(')') + 2).split(' ');
   const userTicks = Number(fieldsAfterTheName[FIRST_TIME_FIELD_AFTER_THE_NAME]);
@@ -62,11 +62,11 @@ const readCpuTicks = (pid) => {
   return userTicks + systemTicks || 0;
 };
 
-const isRenderer = (pid) => readProcessFile(pid, 'cmdline').includes('--type=renderer');
+const isRenderer = (pid: number): boolean => readProcessFile(pid, 'cmdline').includes('--type=renderer');
 
-const createMonitor = (chromePid) => {
+const createMonitor = (chromePid: number) => {
   const usage = { peakSiteMemoryInMb: 0, peakChromeMemoryInMb: 0, peakCpuPercent: 0, cpuSeconds: 0 };
-  const lastTicksByPid = new Map();
+  const lastTicksByPid = new Map<number, number>();
   let lastSampleAt = performance.now();
 
   const sample = () => {
@@ -99,17 +99,17 @@ const createMonitor = (chromePid) => {
   return { sample, usage };
 };
 
-const clickButton = async (page, scope, text) => {
+const clickButton = async (page: Page, scope: string, text: string): Promise<void> => {
   await page.$$eval(
     `${scope} button`,
     (buttons, buttonText) => {
-      const button = buttons.find((candidate) => candidate.textContent.trim() === buttonText);
+      const button = buttons.find((candidate) => candidate.textContent?.trim() === buttonText);
 
       if (!button) {
         throw new Error(`Button "${buttonText}" not found`);
       }
 
-      button.click();
+      (button as HTMLElement).click();
     },
     text,
   );
@@ -117,7 +117,7 @@ const clickButton = async (page, scope, text) => {
   await wait(TIME_FOR_THE_SCREEN_TO_SETTLE_IN_MS);
 };
 
-const useTheSite = async (page) => {
+const useTheSite = async (page: Page): Promise<void> => {
   await clickButton(page, 'nav', 'Home');
   await clickButton(page, 'body', 'Generate Playlist');
   await clickButton(page, 'main', 'Like');
@@ -143,7 +143,13 @@ const browser = await launch({
   defaultViewport: { width: 1280, height: 720 },
 });
 
-const { sample, usage } = createMonitor(browser.process().pid);
+const chromePid = browser.process()?.pid;
+
+if (!chromePid) {
+  throw new Error('Chrome started without a process id');
+}
+
+const { sample, usage } = createMonitor(chromePid);
 const sampling = setInterval(sample, SAMPLE_INTERVAL_IN_MS);
 const startedAt = performance.now();
 

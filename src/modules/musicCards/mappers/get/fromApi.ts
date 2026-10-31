@@ -23,5 +23,6 @@ export class MusicFromApiMapper {
 
 export interface IMusicWithTransformation extends MusicFromApiMapper {
   img: string;
+  imgSet: string;
   url: string;
 }

@@ -10,9 +10,33 @@ import { ApiReload } from '@/modules/musicCards/services/api/Reload';
 import { ReactionEnum, ReactionsService } from '@/modules/musicCards/services/ReactionsService';
 import { MainContainer } from '@/pages/index';
 import { MockProviders } from '@/utils/mockProviders';
+import { parseToYoutubeContent } from '@/modules/musicCards/utils/parseToYoutubeContent';
 
-const firstCard = { id: 'id1', title: 'First song', artist: 'First artist', img: 'first.jpg', url: 'https://first' };
-const secondCard = { id: 'id2', title: 'Second song', artist: 'Second artist', img: 'second.jpg', url: 'https://second' };
+const firstCard = {
+  id: 'id1',
+  title: 'First song',
+  artist: 'First artist',
+  img: 'first.jpg',
+  imgSet: 'first.jpg 320w',
+  url: 'https://first',
+};
+const secondCard = {
+  id: 'id2',
+  title: 'Second song',
+  artist: 'Second artist',
+  img: 'second.jpg',
+  imgSet: 'second.jpg 320w',
+  url: 'https://second',
+};
+
+describe('parseToYoutubeContent', () => {
+  it('should use the 320px thumbnail and offer the 480px one for wider slots', () => {
+    const [card] = parseToYoutubeContent([{ id: 'abc', title: 'Song', artist: 'Artist' } as MusicFromApiMapper]);
+
+    expect(card.img).toBe('https://img.youtube.com/vi/abc/mqdefault.jpg');
+    expect(card.imgSet).toBe('https://img.youtube.com/vi/abc/mqdefault.jpg 320w, https://img.youtube.com/vi/abc/hqdefault.jpg 480w');
+  });
+});
 
 describe('<Cards />', () => {
   const renderCards = () =>
@@ -21,6 +45,16 @@ describe('<Cards />', () => {
         <Cards cards={[firstCard, secondCard]} />
       </MockProviders>,
     );
+
+  it('should load a thumbnail of the shown size, only when it gets close to the screen', () => {
+    const { container } = renderCards();
+    const thumbnail = container.querySelector('img');
+
+    expect(thumbnail).toHaveAttribute('srcset', 'first.jpg 320w');
+    expect(thumbnail).toHaveAttribute('sizes', '(min-width: 768px) 320px, 100vw');
+    expect(thumbnail).toHaveAttribute('loading', 'lazy');
+    expect(thumbnail).toHaveAttribute('decoding', 'async');
+  });
 
   it('should describe the link by the visible text', () => {
     renderCards();
