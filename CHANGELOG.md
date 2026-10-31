@@ -6,6 +6,8 @@ What changed and **why**. Releases also get notes on GitHub (`create-tag-and-rel
 
 - The deploy runs the coverage before writing the production values, and the Sentry test sets its own environment, so
   the deploy of the Storybook and the coverage report no longer fails.
+- The E2E specs and the resource monitor serve the thumbnails from fixtures of the same dimensions as the real ones, so
+  they no longer depend on the network, and the monitor fails if the site calls any other external host.
 
 ## 5.1.1 - 2026-10-31
 

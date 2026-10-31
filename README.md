@@ -111,6 +111,8 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
 - **E2E (Cypress + Cucumber):** the production build, with commemorative dates on a mocked clock, notifications,
   language switching and a guard against Tailwind losing its spacing. The specs fix the browser language and turn the
   service worker off, otherwise the machine locale and the PWA cache change the result.
+- **Network:** the catalog is local and the E2E specs and the resource monitor serve the thumbnails from
+  `cypress/fixtures`, with the same dimensions as the real ones. Only Lighthouse loads the real images.
 - **Accessibility:** axe on every screen and at six viewport sizes. Notes in [docs/accessibility.md](docs/accessibility.md).
 - **Lighthouse:** `scripts/lighthouse.mts` requires at least 90 in accessibility, best practices and SEO.
 - **RAM and CPU:** `scripts/resource-usage.mts` uses the site in a real Chrome and reads the processes from `/proc`, so
