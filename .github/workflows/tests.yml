@@ -63,9 +63,6 @@ jobs:
     needs: unit
     timeout-minutes: 10
     runs-on: ubuntu-24.04
-    concurrency:
-      group: gh-pages
-      cancel-in-progress: false
     permissions:
       contents: write
     steps:
@@ -75,9 +72,8 @@ jobs:
       - name: Generate the report
         run: pnpm run unit:coverage
 
-      - name: Publish to gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git remote set-url origin "https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          pnpm exec gh-pages -d coverage -e coverage --add -u "github-actions-bot <support+actions@github.com>"
+      - uses: ./.github/actions/publish-pages
+        with:
+          directory: coverage
+          destination: coverage
+          token: ${{ secrets.GITHUB_TOKEN }}

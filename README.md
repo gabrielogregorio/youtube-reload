@@ -28,6 +28,16 @@
 
 </div>
 
+## Links
+
+| What | Where | Published by |
+|---|---|---|
+| Site | <https://gabrielogregorio.github.io/youtube-reload/> | `deploy.yml` |
+| Storybook | <https://gabrielogregorio.github.io/youtube-reload/storybook/> | `deploy-storybook.yml` |
+| Coverage report | <https://gabrielogregorio.github.io/youtube-reload/coverage/> | `tests.yml` |
+| Site of a PR | `https://gabrielogregorio.github.io/youtube-reload/preview/<branch>/` | `deploy-preview.yml` |
+| Storybook of a PR | `https://gabrielogregorio.github.io/youtube-reload/storybook/<branch>/` | `deploy-storybook.yml` |
+
 ## About
 
 Each visit shuffles a catalog of songs into a new playlist of 25 cards. Every card opens the song on YouTube, and
@@ -130,10 +140,11 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
 | Workflow | When | What |
 |---|---|---|
 | `tests.yml` | PR to `main` and merge | Unit, then E2E over its own build; the merge also publishes the coverage report |
-| `deploy.yml` | Merge into `main` | Builds and publishes the app and the Storybook right away. It does not wait for the tests |
+| `deploy.yml` | Merge into `main` | Builds and publishes the app right away. It does not wait for the tests |
+| `deploy-storybook.yml` | Merge into `main` and PR | Builds and publishes the Storybook on its own |
 | `check-quality.yml` | push and PR to `main` and `dev` | Lint, types, Prettier, `pnpm audit`, actions pinned to a hash |
 | `codeql-analysis.yml` | push and PR to `main`, weekly | CodeQL on the code and on the workflows |
-| `deploy-preview.yml` | PR | Publishes the app and the Storybook of the branch and links them on the PR |
+| `deploy-preview.yml` | PR | Publishes the app of the branch and links it and its Storybook on the PR |
 | `auto-complete-fields.yml` | PR to `main` | Checks the version is new, assigns, labels and fills the changelog |
 | `create-tag-and-release.yml` | PR merged into `main` | Creates the tag `vX.Y.Z` from `package.json` and the release |
 

@@ -7,6 +7,7 @@ What changed and **why**. Releases also get notes on GitHub (`create-tag-and-rel
 - The Storybook shows the real components instead of the samples from its install, with a language switch, an accessibility
   panel, flows that test themselves and the color palette with its WCAG contrast. CI opens every story in a real browser.
 - The Sentry test sets its own environment, so it no longer depends on what the build wrote.
+- The app and the Storybook deploy separately, and each publish tries again when another one moved `gh-pages`.
 - The deploy is its own workflow and no longer waits for the tests. The tests run on PRs to `main` and on the merge, with
   their own build, and the merge also publishes the coverage report.
 - The E2E specs and the resource monitor serve the thumbnails from fixtures of the same dimensions as the real ones, so

@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   preview:
-    name: Publish the app and the Storybook of this branch
+    name: Publish the app of this branch
     # forks and Dependabot get a read-only token, so they cannot publish
     if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
     environment: sentry
@@ -34,22 +34,17 @@ jobs:
           echo "VITE_ENVIRONMENT=$BRANCH_NAME" >> "$GITHUB_ENV"
           echo "VITE_BASE_PATH=/youtube-reload/preview/$BRANCH_NAME/" >> "$GITHUB_ENV"
 
-      - name: Build the app and the Storybook
+      - name: Build the app
         run: |
           node scripts/write-env.mts
           pnpm run build
           cp build/index.html build/404.html
-          pnpm run build-storybook
 
-      - name: Publish to gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mkdir -p "site/preview/$BRANCH_NAME" "site/storybook/$BRANCH_NAME"
-          cp -r build/* "site/preview/$BRANCH_NAME"
-          cp -r storybook-static/* "site/storybook/$BRANCH_NAME"
-          git remote set-url origin "https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          pnpm exec gh-pages -d site --add -u "github-actions-bot <support+actions@github.com>"
+      - uses: ./.github/actions/publish-pages
+        with:
+          directory: build
+          destination: preview/${{ env.BRANCH_NAME }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Link the preview on the PR
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0

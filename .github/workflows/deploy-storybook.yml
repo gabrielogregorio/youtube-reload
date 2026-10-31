@@ -1,0 +1,48 @@
+name: Deploy Storybook
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main, dev]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: storybook-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-storybook:
+    name: Publish the Storybook
+    # forks and Dependabot get a read-only token, so they cannot publish
+    if: github.event_name != 'pull_request' || (github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]')
+    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      HEAD_REF: ${{ github.head_ref }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup-environment
+
+      - name: Build the Storybook
+        run: pnpm run build-storybook
+
+      - name: Choose the path
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == 'pull_request' ]]; then
+            echo "DESTINATION=storybook/${HEAD_REF##*/}" >> "$GITHUB_ENV"
+          else
+            echo "DESTINATION=storybook" >> "$GITHUB_ENV"
+          fi
+
+      - uses: ./.github/actions/publish-pages
+        with:
+          directory: storybook-static
+          destination: ${{ env.DESTINATION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
