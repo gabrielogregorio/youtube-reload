@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{h as t,m as n}from"./react-redux-rmF_8mjr.js";var r,i;function a(){return(a=e((()=>{t(),r=n({name:`reactions`,initialState:{reactions:void 0},reducers:{saveReaction:(e,{payload:t})=>({...e,reactions:t})}}),{saveReaction:i}=r.actions})))()}export{r as n,i as r,a as t};
