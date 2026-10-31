@@ -30,6 +30,7 @@ tsconfig.tsbuildinfo
 storybook-static
 
 lighthouseReport.html
+resourceUsageReport.json
 
 # cypress
 cypress/screenshots

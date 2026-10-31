@@ -77,9 +77,10 @@ environment of the GitHub repository; without them the app simply runs without S
 | `pnpm run preview` | Serves the production build |
 | `pnpm run unit` | Unit tests in watch mode |
 | `pnpm run unit:coverage` | Unit tests once; fails below 100% coverage |
-| `pnpm run e2e` | Builds, then runs every Cypress spec and Lighthouse |
+| `pnpm run e2e` | Builds, then runs every Cypress spec, Lighthouse and the resource monitor |
 | `pnpm run e2e:ui` | Opens Cypress against the development server |
 | `pnpm run e2e:lighthouse` | Lighthouse only, over an existing build |
+| `pnpm run e2e:resources` | RAM and CPU monitor only, over an existing build |
 | `pnpm run lint` | ESLint and TypeScript, Cypress included |
 | `pnpm run lint:fix` | ESLint with automatic fixes |
 | `pnpm run format` | Prettier |
@@ -112,6 +113,10 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
   service worker off, otherwise the machine locale and the PWA cache change the result.
 - **Accessibility:** axe on every screen and at six viewport sizes. Notes in [docs/accessibility.md](docs/accessibility.md).
 - **Lighthouse:** `scripts/lighthouse.mjs` requires at least 90 in accessibility, best practices and SEO.
+- **RAM and CPU:** `scripts/resource-usage.mjs` uses the site in a real Chrome and reads the processes from `/proc`, so
+  it needs Linux. It fails when the renderer processes, which hold the site, peak above 300 MB of proportional memory
+  (PSS). The whole Chrome and the CPU are only reported, because they depend on the browser and on the machine.
+  `MAX_SITE_MEMORY_IN_MB` changes the limit. On CI the numbers also go to the job summary.
 
 ## CI/CD
 

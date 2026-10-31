@@ -27,7 +27,7 @@ jobs:
         run: pnpm run unit:coverage
 
   e2e:
-    name: E2E Tests (Cypress, axe and Lighthouse)
+    name: E2E Tests (Cypress, axe, Lighthouse and resource usage)
     needs: unit
     timeout-minutes: 15
     runs-on: ubuntu-24.04
@@ -37,7 +37,7 @@ jobs:
         with:
           e2e: 'true'
 
-      - name: Run the production build against Cypress and Lighthouse
+      - name: Run the production build against Cypress, Lighthouse and the resource monitor
         run: pnpm run e2e
 
       - name: Upload the failure screenshots
@@ -48,6 +48,7 @@ jobs:
           path: |
             cypress/screenshots
             lighthouseReport.html
+            resourceUsageReport.json
           if-no-files-found: ignore
           retention-days: 14
 

@@ -9,6 +9,8 @@ What changed and **why**. Releases also get notes on GitHub (`create-tag-and-rel
 - The Storybook and the coverage report are published with the site, and the service worker leaves those paths alone.
 - `tsconfig.json` is the only place that declares path aliases. Vite reads it, and the aliases that pointed to missing
   folders are gone.
+- The E2E run now uses the site in a real Chrome and reads RAM and CPU from the system, failing above 300 MB of site
+  memory.
 - The license is now MIT, like the other projects.
 
 ## 5.0.0 - 2026-10-31
