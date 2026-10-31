@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   content: ['./index.html', './src/**/*.{jsx,tsx}'],
   darkMode: 'class',
   theme: {

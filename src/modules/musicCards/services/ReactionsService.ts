@@ -1,9 +1,9 @@
 import { StorageAccessNameEnum, StorageService } from '@/services/StorageService';
 
 export enum ReactionEnum {
-  'like' = 'like',
-  'unlike' = 'unlike',
-  'none' = 'none',
+  like = 'like',
+  unlike = 'unlike',
+  none = 'none',
 }
 
 export interface IReactionsOptions {

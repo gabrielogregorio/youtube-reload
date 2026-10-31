@@ -18,7 +18,7 @@ describe('<GeneratePlaylist />', () => {
     expect(screen.getByRole('button', { name: 'Gerar Playlist' })).toBeDefined();
   });
 
-  it('should render a generate playlists', () => {
+  it('should call generateRandomPlaylist on click', () => {
     const mockGenerateRandomPlaylist: Mock = vi.fn();
 
     expect(mockGenerateRandomPlaylist).toHaveBeenCalledTimes(0);

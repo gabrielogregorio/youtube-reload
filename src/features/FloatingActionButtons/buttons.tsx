@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
 
 export enum LateralButtonEnum {
-  'Dark' = 'Dark',
-  'Red' = 'Red',
-  'Blue' = 'Blue',
+  Dark = 'Dark',
+  Red = 'Red',
+  Blue = 'Blue',
 }
 
 const variantLateralButtonStyle: { [key in LateralButtonEnum]: string } = {

@@ -34,7 +34,7 @@ export const Button = ({ primary = false, size = 'medium', backgroundColor = '',
       type="button"
       className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
       style={{ backgroundColor }}
-      // eslint-disable-next-line react/jsx-props-no-spreading
+
       {...props}>
       {label}
     </button>

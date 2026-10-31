@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -12,16 +12,14 @@
     "noErrorTruncation": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "Node16",
-    "moduleResolution": "node16",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "types": ["vitest/globals", "@testing-library/jest-dom", "node"],
     "jsx": "preserve",
     "incremental": true,
-    "rootDir": ".",
-    "outDir": "build",
-    "baseUrl": ".",
     "paths": {
       "@badeball/cypress-cucumber-preprocessor/*": ["./node_modules/@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/*"],
 
@@ -49,6 +47,6 @@
       "@/pages/*": ["./src/pages/*"]
     }
   },
-  "include": ["next-env.d.ts", "./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.mts", "./src/**/*.mtsx", "./vite.config.mts"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./tests/**/*.ts", "./vite.config.mts"],
   "exclude": ["node_modules", "./cypress.config.ts"]
 }
