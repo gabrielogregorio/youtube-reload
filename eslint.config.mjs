@@ -166,6 +166,7 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...jsxA11y.configs.recommended.rules,
       'react-hooks/rules-of-hooks': 'error',
+      'react/button-has-type': 'error',
       ...projectRules,
     },
   },

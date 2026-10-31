@@ -21,3 +21,5 @@
 6. Use `role="presentation"` and `alt=""` on images that are only decoration.
 7. The accessible name must contain the visible text (`label-content-name-mismatch` in axe): voice control users
    say what they see.
+8. Every `button` declares its `type`, because a `button` inside a form submits it by default. `react/button-has-type`
+   fails the lint without it.

@@ -97,8 +97,8 @@ The language comes from `?lang=pt-BR` in the URL, then the saved choice, then th
 ```tsx
 const { t } = useTranslation();
 
-<button>{t('Generate Playlist')}</button>;
-<button aria-label={t('Open notifications, {count} new', { count: 3 })} />;
+<button type="button">{t('Generate Playlist')}</button>;
+<button type="button" aria-label={t('Open notifications, {count} new', { count: 3 })} />;
 ```
 
 To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/index.ts`, create its dictionary in
