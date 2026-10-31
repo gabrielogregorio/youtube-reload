@@ -19,6 +19,7 @@
     "unit:ui": "vitest --ui",
     "unit:preview": "vite preview --host --port=5556",
     "e2e": "start-server-and-test _build_start_app http-get://127.0.0.1:5556/youtube-reload/ _headless:all",
+    "e2e:built": "start-server-and-test _start_prod_app http-get://127.0.0.1:5556/youtube-reload/ _headless:all",
     "e2e:ui": "start-server-and-test _starting_dev_app http-get://127.0.0.1:5556/youtube-reload/ _open",
     "e2e:local": "start-server-and-test _starting_dev_app http-get://127.0.0.1:5556/youtube-reload/ _headless",
     "e2e:features": "start-server-and-test _start_prod_app http-get://127.0.0.1:5556/youtube-reload/ _headless:tests",

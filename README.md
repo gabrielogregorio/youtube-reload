@@ -79,6 +79,7 @@ environment of the GitHub repository; without them the app simply runs without S
 | `pnpm run unit:coverage` | Unit tests once; fails below 100% coverage |
 | `pnpm run e2e` | Builds, then runs every Cypress spec, Lighthouse and the resource monitor |
 | `pnpm run e2e:ui` | Opens Cypress against the development server |
+| `pnpm run e2e:built` | The same run over an existing build |
 | `pnpm run e2e:lighthouse` | Lighthouse only, over an existing build |
 | `pnpm run e2e:resources` | RAM and CPU monitor only, over an existing build |
 | `pnpm run lint` | ESLint and TypeScript, Cypress included |
@@ -124,7 +125,8 @@ To add a language: add it to `LanguageEnum` and `LANGUAGES` in `src/core/i18n/in
 
 | Workflow | When | What |
 |---|---|---|
-| `tests.yml` | push and PR to `main` and `dev` | Unit, then E2E; a push to `main` then deploys the app, the Storybook and the coverage report to GitHub Pages |
+| `tests.yml` | PR to `main` and merge | Unit, then E2E over its own build; the merge also publishes the coverage report |
+| `deploy.yml` | Merge into `main` | Builds and publishes the app and the Storybook right away. It does not wait for the tests |
 | `check-quality.yml` | push and PR to `main` and `dev` | Lint, types, Prettier, `pnpm audit`, actions pinned to a hash |
 | `codeql-analysis.yml` | push and PR to `main`, weekly | CodeQL on the code and on the workflows |
 | `deploy-preview.yml` | PR | Publishes the app and the Storybook of the branch and links them on the PR |
