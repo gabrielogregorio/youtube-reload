@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping. Bugs and ideas go through the issue forms. Security problems go through
+Thanks for helping. Bugs, ideas and questions go through the issue templates. Security problems go through
 [docs/security.md](docs/security.md), never through a public issue.
 
 ## Set up
