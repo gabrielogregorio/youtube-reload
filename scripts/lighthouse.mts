@@ -17,7 +17,7 @@ const minimumScores = new Map([
 const chrome = await launch({ chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu'] });
 
 try {
-  const { lhr, report } = await lighthouse(BASE_URL, {
+  const result = await lighthouse(BASE_URL, {
     port: chrome.port,
     output: 'html',
     logLevel: 'error',
@@ -27,7 +27,13 @@ try {
     throttling: { rttMs: 40, throughputKbps: 11024, cpuSlowdownMultiplier: 1 },
   });
 
-  writeFileSync(REPORT_FILE, report);
+  if (!result) {
+    throw new Error('Lighthouse returned no result');
+  }
+
+  const { lhr, report } = result;
+
+  writeFileSync(REPORT_FILE, String(report));
 
   const categories = new Map(Object.entries(lhr.categories));
 

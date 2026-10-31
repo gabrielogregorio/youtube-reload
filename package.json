@@ -1,6 +1,6 @@
 {
   "name": "youtube-reload",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "license": "MIT",
   "homepage": "https://gabrielogregorio.github.io/youtube-reload",
   "private": false,
@@ -43,8 +43,8 @@
     "e2e:lighthouse": "start-server-and-test _start_prod_app http-get://127.0.0.1:5556/youtube-reload/ _lighthouse",
     "e2e:resources": "start-server-and-test _start_prod_app http-get://127.0.0.1:5556/youtube-reload/ _resources",
     "_headless:all": "pnpm run _headless && pnpm run _lighthouse && pnpm run _resources",
-    "_lighthouse": "node scripts/lighthouse.mjs",
-    "_resources": "node scripts/resource-usage.mjs"
+    "_lighthouse": "node scripts/lighthouse.mts",
+    "_resources": "node scripts/resource-usage.mts"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.13.0",

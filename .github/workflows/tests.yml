@@ -71,7 +71,7 @@ jobs:
 
       - name: Build the app, the Storybook and the coverage report
         run: |
-          node scripts/write-env.mjs
+          node scripts/write-env.mts
           pnpm run build
           cp build/index.html build/404.html
           pnpm run build-storybook
