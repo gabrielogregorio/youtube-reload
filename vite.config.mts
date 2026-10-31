@@ -5,7 +5,7 @@ import { resolve } from 'path';
 import { VitePWA } from 'vite-plugin-pwa';
 import tailwindcss from '@tailwindcss/vite';
 
-const baseUrl = '/youtube-reload/';
+const baseUrl = process.env.VITE_BASE_PATH ?? '/youtube-reload/';
 
 export default defineConfig(({ mode }) => {
   const isTest = mode === 'test';
@@ -83,8 +83,8 @@ export default defineConfig(({ mode }) => {
             display: 'standalone',
             orientation: 'portrait',
 
-            start_url: '/youtube-reload/',
-            scope: '/youtube-reload/',
+            start_url: baseUrl,
+            scope: baseUrl,
 
             icons: [
               {

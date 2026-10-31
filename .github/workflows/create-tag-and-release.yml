@@ -5,50 +5,54 @@ on:
     types: [closed]
     branches: [main]
 
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   create-release:
-    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    timeout-minutes: 5
+    runs-on: ubuntu-24.04
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
-          ref: main
-
-      - name: set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 20.x
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
 
       - name: set config tag and release
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          PACKAGE_VERSION=$(node -p "require('./package.json').version")
-
-          PR_TITLE="${{ github.event.pull_request.title }}"
-          PR_BODY="${{ github.event.pull_request.body }}"
-          BODY_RELEASE="${PR_TITLE} ${PR_BODY}"
-
-          echo "BODY_RELEASE<<EOF" >> $GITHUB_ENV
-          echo "$BODY_RELEASE" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-
-          TAG_NAME="v${PACKAGE_VERSION}"
-          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-
-          RELEASE_NAME="Release v${PACKAGE_VERSION}"
-          echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" > /dev/null; then
+            echo "::warning::$TAG already exists: nothing to release (the version was not bumped)"
+            echo "SKIP=true" >> "$GITHUB_ENV"
+            exit 0
+          fi
+          {
+            echo "TAG_NAME=$TAG"
+            echo "RELEASE_NAME=Youtube Reload $TAG"
+            [[ "$VERSION" == *-* ]] && echo "PRERELEASE=true" || echo "PRERELEASE=false"
+          } >> "$GITHUB_ENV"
+          # PR text goes through env + a file, never straight into the script
+          printf '%s\n\n%s\n' "${PR_TITLE#Release $TAG - }" "${PR_BODY//\[...autoGenerate\]/}" > release-notes.md
 
       - name: create tag and release
-        uses: gabrielogregorio/create-tag-and-release@v2.0.0
+        if: env.SKIP != 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ env.TAG_NAME }}
-          release_name: ${{ env.RELEASE_NAME }}
-          body: |
-            ${{ env.BODY_RELEASE }}
-          make_latest: true
-          generate_release_notes: true
-          draft: false
-          prerelease: false
-          discussion_category_name: 'Announcements'
+          GH_TOKEN: ${{ github.token }}
+          MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
+        run: |
+          gh release create "$TAG_NAME" \
+            --target "$MERGE_SHA" \
+            --title "$RELEASE_NAME" \
+            --notes-file release-notes.md \
+            --generate-notes \
+            --prerelease="$PRERELEASE" \
+            --latest="$([[ $PRERELEASE == true ]] && echo false || echo true)"
