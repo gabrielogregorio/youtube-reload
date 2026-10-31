@@ -1,8 +1,9 @@
 export enum StorageAccessNameEnum {
-  'Reactions' = 'reactions.v2',
-  'Profile' = 'profile',
-  'Notify' = 'notify',
-  'UserId' = 'UserId',
+  Reactions = 'reactions.v2',
+  Profile = 'profile',
+  Notify = 'notify',
+  UserId = 'UserId',
+  Language = 'language',
 }
 
 export class StorageService {
@@ -30,7 +31,8 @@ export class StorageService {
         return undefined;
       }
       return JSON.parse(item) as T;
-    } catch (error: unknown) {
+    } catch {
+      // a corrupted value behaves like an empty key
       return undefined;
     }
   }

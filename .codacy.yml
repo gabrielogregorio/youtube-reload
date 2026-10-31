@@ -1,0 +1,14 @@
+---
+# ESLint runs in CI with eslint.config.mjs. Codacy cannot load that file, because it imports plugins
+# Codacy does not ship, so its ESLint would apply a different rule set and disagree with the project.
+engines:
+  eslint-8:
+    exclude_paths:
+      - '**'
+  eslint-9:
+    exclude_paths:
+      - '**'
+
+# Markdown is prose: Prettier skips it and the line length and heading rules do not apply here.
+exclude_paths:
+  - '**.md'

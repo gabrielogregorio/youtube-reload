@@ -30,4 +30,8 @@ tsconfig.tsbuildinfo
 storybook-static
 
 lighthouseReport.html
-pa11y.html
+
+# cypress
+cypress/screenshots
+cypress/videos
+cypress/downloads

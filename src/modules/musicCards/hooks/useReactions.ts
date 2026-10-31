@@ -21,30 +21,16 @@ export const useReactions = () => {
 
   const sendReaction = useCallback(
     (idContent: string, reaction: ReactionEnum): void => {
-      const newReaction = reactions;
-
-      if (!newReaction) {
-        saveInitialState({
-          [idContent]: reaction,
-        });
-        return;
-      }
-
       saveInitialState({
-        ...newReaction,
+        ...reactions,
         [idContent]: reaction,
       });
     },
     [dispatch, reactions],
   );
 
-  const clearReactions = () => {
-    ReactionsService.clearAll();
-  };
-
   return {
     reactions: reactions as IReactionsOptions | undefined,
-    clearReactions,
     sendReaction,
   };
 };

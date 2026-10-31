@@ -3,14 +3,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { VitePWA } from 'vite-plugin-pwa';
+import tailwindcss from '@tailwindcss/vite';
 
-const baseUrl = '/youtube-reload/';
+const baseUrl = process.env.VITE_BASE_PATH ?? '/youtube-reload/';
 
 export default defineConfig(({ mode }) => {
   const isTest = mode === 'test';
   const isStorybook = process.argv.some((arg) => arg.includes('storybook'));
 
-  const isProduction = process.env.NODE_ENV === 'production';
+  const shouldUploadToSentry = Boolean(process.env.SENTRY_AUTH_TOKEN);
 
   return {
     root: '.',
@@ -23,45 +24,44 @@ export default defineConfig(({ mode }) => {
       alias: {
         // bdd loader
         '@badeball/cypress-cucumber-preprocessor/*': resolve(
-          __dirname,
+          import.meta.dirname,
           './node_modules/@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/*',
         ),
 
         // rest
 
-        '@/layouts': resolve(__dirname, './src/components/layouts'),
-        '@/screens': resolve(__dirname, './src/screens'),
-        '@/templates': resolve(__dirname, './src/components/templates'),
-        '@/widgets': resolve(__dirname, './src/components/widgets'),
-        '@/screen': resolve(__dirname, './src/components/screen'),
+        '@/layouts': resolve(import.meta.dirname, './src/components/layouts'),
+        '@/screens': resolve(import.meta.dirname, './src/screens'),
+        '@/templates': resolve(import.meta.dirname, './src/components/templates'),
+        '@/widgets': resolve(import.meta.dirname, './src/components/widgets'),
+        '@/screen': resolve(import.meta.dirname, './src/components/screen'),
 
-        '@/mappers': resolve(__dirname, './src/core/mappers'),
-        '@/configs': resolve(__dirname, './src/core/configs'),
-        '@/connections': resolve(__dirname, './src/core/connections'),
-        '@/constants': resolve(__dirname, './src/core/constants'),
-        '@/contracts': resolve(__dirname, './src/core/contracts'),
-        '@/helpers': resolve(__dirname, './src/core/helpers'),
-        '@/data': resolve(__dirname, './src/core/data'),
-        '@/errors': resolve(__dirname, './src/core/errors'),
-        '@/guard': resolve(__dirname, './src/core/guard'),
-        '@/hooks': resolve(__dirname, './src/core/hooks'),
-        '@/facades': resolve(__dirname, './src/core/facades'),
-        '@/locales': resolve(__dirname, './src/core/locales'),
-        '@/services': resolve(__dirname, './src/core/services'),
-        '@/utils': resolve(__dirname, './src/core/utils'),
-        '@/core': resolve(__dirname, './src/core'),
-        '@/features': resolve(__dirname, './src/features'),
-        '@/modules': resolve(__dirname, './src/modules'),
+        '@/mappers': resolve(import.meta.dirname, './src/core/mappers'),
+        '@/configs': resolve(import.meta.dirname, './src/core/configs'),
+        '@/connections': resolve(import.meta.dirname, './src/core/connections'),
+        '@/constants': resolve(import.meta.dirname, './src/core/constants'),
+        '@/contracts': resolve(import.meta.dirname, './src/core/contracts'),
+        '@/helpers': resolve(import.meta.dirname, './src/core/helpers'),
+        '@/data': resolve(import.meta.dirname, './src/core/data'),
+        '@/errors': resolve(import.meta.dirname, './src/core/errors'),
+        '@/guard': resolve(import.meta.dirname, './src/core/guard'),
+        '@/hooks': resolve(import.meta.dirname, './src/core/hooks'),
+        '@/facades': resolve(import.meta.dirname, './src/core/facades'),
+        '@/locales': resolve(import.meta.dirname, './src/core/locales'),
+        '@/services': resolve(import.meta.dirname, './src/core/services'),
+        '@/utils': resolve(import.meta.dirname, './src/core/utils'),
+        '@/core': resolve(import.meta.dirname, './src/core'),
+        '@/features': resolve(import.meta.dirname, './src/features'),
+        '@/modules': resolve(import.meta.dirname, './src/modules'),
 
-        '@/mocks': resolve(__dirname, './src/mocks'),
-        '@/pages': resolve(__dirname, './src/pages'),
+        '@/mocks': resolve(import.meta.dirname, './src/mocks'),
+        '@/pages': resolve(import.meta.dirname, './src/pages'),
       },
     },
 
     plugins: [
-      react({
-        // fastRefresh: !isTest,
-      }),
+      react(),
+      !isTest && tailwindcss(),
       !isTest &&
         !isStorybook &&
         VitePWA({
@@ -75,7 +75,7 @@ export default defineConfig(({ mode }) => {
           manifest: {
             name: 'Youtube Reload',
             short_name: 'Youtube Reload',
-            description: 'Descubra várias músicas inéditas',
+            description: 'Discover plenty of songs you have never heard',
 
             theme_color: '#2d3036',
             background_color: '#2d3036',
@@ -83,8 +83,8 @@ export default defineConfig(({ mode }) => {
             display: 'standalone',
             orientation: 'portrait',
 
-            start_url: '/youtube-reload/',
-            scope: '/youtube-reload/',
+            start_url: baseUrl,
+            scope: baseUrl,
 
             icons: [
               {
@@ -114,10 +114,11 @@ export default defineConfig(({ mode }) => {
         }),
       !isTest &&
         !isStorybook &&
-        isProduction &&
+        shouldUploadToSentry &&
         sentryVitePlugin({
           org: 'gregorio-kg',
           project: 'youtube-reload',
+          telemetry: false,
         }),
     ].filter(Boolean),
     test: {
@@ -125,6 +126,10 @@ export default defineConfig(({ mode }) => {
       include: ['src/**/*.{test,spec}.{ts,tsx}'],
       coverage: {
         reporter: ['text', 'json', 'html', 'lcov'],
+        include: ['src/**/*.{ts,tsx}'],
+        // entry point and test helpers run in the E2E; the stories are Storybook samples
+        exclude: ['src/index.tsx', 'src/stories/**', 'src/core/utils/mockProviders.tsx', 'src/**/*.d.ts', 'src/**/*.{spec,test}.{ts,tsx}'],
+        thresholds: { lines: 100, functions: 100, branches: 100, statements: 100 },
       },
       globals: true,
       environment: 'jsdom',

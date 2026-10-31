@@ -1,6 +1,4 @@
-//@ts-ignore
-import { Meta, StoryObj } from '@storybook/react';
-//@ts-ignore
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { Header } from './Header.jsx';
 
@@ -29,5 +27,6 @@ export const LoggedIn: Story = {
   },
 };
 
-// @ts-ignore
-export const LoggedOut: Story = {};
+export const LoggedOut: Story = {
+  args: { onLogin: fn(), onLogout: fn(), onCreateAccount: fn() },
+};

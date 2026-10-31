@@ -13,7 +13,6 @@ interface IUseMusicApplyFiltersInputType {
   offset?: number;
   limit?: number;
   likeFilter?: 'none' | 'onlyLike' | 'onlyUnlike';
-  onlyUnLikes?: boolean;
 }
 
 export const useMusicApplyFilters = ({

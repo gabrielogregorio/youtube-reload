@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
 
 export enum LateralButtonEnum {
-  'Dark' = 'Dark',
-  'Red' = 'Red',
-  'Blue' = 'Blue',
+  Dark = 'Dark',
+  Red = 'Red',
+  Blue = 'Blue',
 }
 
 const variantLateralButtonStyle: { [key in LateralButtonEnum]: string } = {
@@ -21,7 +21,7 @@ interface ILateralButtonProps {
 }
 
 export const LateralButton = ({ title, icon, action, variant, bottomPosition }: ILateralButtonProps) => {
-  const styleVariant: string = variantLateralButtonStyle[variant] || '';
+  const styleVariant: string = variantLateralButtonStyle[variant];
 
   return (
     <div className={`fixed ${bottomPosition} right-2`}>

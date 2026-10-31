@@ -1,9 +1,9 @@
 import { StorageAccessNameEnum, StorageService } from '@/services/StorageService';
 
 export enum ReactionEnum {
-  'like' = 'like',
-  'unlike' = 'unlike',
-  'none' = 'none',
+  like = 'like',
+  unlike = 'unlike',
+  none = 'none',
 }
 
 export interface IReactionsOptions {
@@ -28,10 +28,5 @@ export class ReactionsService {
 
   public static updateReactions(reactions: IReactionsOptions) {
     StorageService.setItem(StorageAccessNameEnum.Reactions, JSON.stringify(reactions));
-  }
-
-  public static clearAll() {
-    StorageService.removeItem(StorageAccessNameEnum.Reactions);
-    document.location.reload();
   }
 }

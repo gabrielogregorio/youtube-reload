@@ -1,10 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./cypress/",
     "isolatedModules": false,
     "noEmit": true,
-    "types": ["node", "cypress-real-events", "cypress-axe", "cypress-audit", "cypress"]
+    "noImplicitAny": false,
+    "types": ["node", "cypress-real-events", "cypress-axe", "cypress"]
   },
-  "includes": ["../node_modules/cypress", "./support/index.d.ts", "./e2e/accessibility/*.ts", "./e2e/bdd/*.ts"]
+  "include": ["./**/*.ts"]
 }

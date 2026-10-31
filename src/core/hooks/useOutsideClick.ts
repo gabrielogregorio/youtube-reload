@@ -8,12 +8,11 @@ export const useOutsideClick = (
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
-      if (!ref?.current) {
+      if (!ref.current) {
         return;
       }
 
-      const referencesContainTarget = (): boolean => !ref.current?.contains(event.target as Node);
-      const clickedOutsideReference = (ref.current && referencesContainTarget()) || false;
+      const clickedOutsideReference = !ref.current.contains(event.target as Node);
 
       if (clickedOutsideReference) {
         onOutsideClick();
@@ -25,7 +24,7 @@ export const useOutsideClick = (
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref?.current]);
+  }, [ref.current]);
 
   return { clickedOutside };
 };

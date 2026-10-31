@@ -6,4 +6,3 @@ export const fillIfNecessary = (item: number) => {
 
   return item.toString();
 };
-// fixme create tests and refactor

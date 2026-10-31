@@ -10,13 +10,9 @@ When('open the page', () => {
 });
 
 Then('show title {string}', (title: string) => {
-  const titleHandled = title.replace(/"/g, '"');
-
-  cy.get(`h2:contains("${titleHandled}")`).should('exist').should('be.visible');
+  cy.get(`h2:contains("${title}")`).should('exist').should('be.visible');
 });
 
 Then('show subtitle {string}', (subtitle: string) => {
-  const subtitleHandled = subtitle.replace(/"/g, '"');
-
-  cy.get(`div:contains("${subtitleHandled}")`).should('exist').should('be.visible');
+  cy.get(`div:contains("${subtitle}")`).should('exist').should('be.visible');
 });

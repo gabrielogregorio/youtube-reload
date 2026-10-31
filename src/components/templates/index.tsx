@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import { EnvironmentName } from '@/layouts/header/EnvironmentName';
 import { Notify } from '../../features/Notify';
 import { Profile } from '../../features/Profile';
+import { LanguageSwitcher } from '../../features/LanguageSwitcher';
 
 interface ITemplateDefaultProps {
   children: ReactElement;
@@ -19,6 +20,8 @@ export const MainTemplate = ({ children }: ITemplateDefaultProps) => {
         <div className="ml-2 w-14 h-full hidden md:block" />
 
         <Navbar />
+
+        <LanguageSwitcher />
 
         <Notify />
 

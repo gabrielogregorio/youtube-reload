@@ -3,12 +3,12 @@
 exports[`<Navbar /> > should render button texts 1`] = `
 <div>
   <nav
-    aria-label="Menu Principal"
+    aria-label="Main menu"
     class="w-full flex items-center justify-center"
   >
     <button
       aria-current="page"
-      aria-label="Início"
+      aria-label="Home"
       class="border-b-4 bg-dark-slate decoration-none p-5 pb-1 mb-4 cursor-pointer transition-all duration-150 hover:scale-110 select-none font-bold flex items-center justify-center border-red-soft text-red-soft"
       type="button"
     >
@@ -32,7 +32,7 @@ exports[`<Navbar /> > should render button texts 1`] = `
       <span
         class="ml-2 hidden md:block text-base"
       >
-        Início
+        Home
       </span>
     </button>
     <button

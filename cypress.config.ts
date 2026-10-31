@@ -2,7 +2,6 @@ import { defineConfig } from 'cypress';
 import createBundler from '@bahmutov/cypress-esbuild-preprocessor';
 import { addCucumberPreprocessorPlugin } from '@badeball/cypress-cucumber-preprocessor';
 import { createEsbuildPlugin } from '@badeball/cypress-cucumber-preprocessor/esbuild';
-import pluginConfig from './cypress/plugins/index';
 
 const loadBddConfig = async (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
   // reference https://github.com/badeball/cypress-cucumber-preprocessor/blob/master/docs/step-definitions.md
@@ -15,10 +14,6 @@ const loadBddConfig = async (on: Cypress.PluginEvents, config: Cypress.PluginCon
   on('file:preprocessor', bundler);
 };
 
-const loadCustomPlugins = (on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) => {
-  pluginConfig(on, config);
-};
-
 const showCypressLogOnHeadlessMode = (on) => {
   on('task', {
     log(...message) {
@@ -29,7 +24,6 @@ const showCypressLogOnHeadlessMode = (on) => {
 };
 
 async function setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions): Promise<Cypress.PluginConfigOptions> {
-  loadCustomPlugins(on, config);
   showCypressLogOnHeadlessMode(on);
   await loadBddConfig(on, config);
 

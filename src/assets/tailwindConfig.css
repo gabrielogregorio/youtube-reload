@@ -1,19 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
+@config '../../tailwind.config.mjs';
 
-body {
-  min-height: 100vh;
-  overflow-y: scroll;
-  color: #fbfbfe;
-  background-color: #2d3036;
+/* Tailwind 4 defaults borders to currentcolor; v3 used gray-200. */
+/* Keep these in the layer: unlayered rules beat every Tailwind utility. */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-y: scroll;
+    color: #fbfbfe;
+    background-color: #2d3036;
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 

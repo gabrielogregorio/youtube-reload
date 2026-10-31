@@ -6,13 +6,13 @@ Given('the user is logged in to the website', () => {
 });
 
 When('the user clicks on the notifications icon', (text: string) => {
-  cy.get('div[aria-label="Notifications"]').should('not.exist');
+  cy.get('div[role="dialog"]').should('not.exist');
   cy.get('button[id="open-notify"]').click();
 });
 
 Then('the notifications dropdown should open', () => {
-  cy.get('div[aria-label="Notifications"]').should('exist').should('be.visible');
-  cy.get('h3:contains("Notificações")').should('exist').should('be.visible');
+  cy.get('div[role="dialog"]').should('exist').should('be.visible');
+  cy.get('h3:contains("Notifications")').should('exist').should('be.visible');
 });
 
 Then('the user should see a list of their notifications after {string} ms', (timeInMs: string) => {

@@ -1,9 +1,0 @@
-*.css
-*.svg
-*.png
-*.mdx
-node_modules
-build
-storybook-static
-*.snap
-cypress.config.ts

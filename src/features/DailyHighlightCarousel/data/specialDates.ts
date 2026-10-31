@@ -13,8 +13,8 @@ export interface ISpecialDate {
 export const specialDates: { [month in MonthsNormalizedEnum]: ISpecialDate[] } = {
   [MonthsNormalizedEnum.January]: [
     {
-      title: 'Ano Novo',
-      description: 'Feliz Ano Novo!',
+      title: 'New Year',
+      description: 'Happy New Year!',
       days: [1, 2],
       emoji1: '🎉🎊',
       emoji2: '✨🎆',
@@ -24,7 +24,7 @@ export const specialDates: { [month in MonthsNormalizedEnum]: ISpecialDate[] } =
   [MonthsNormalizedEnum.February]: [],
   [MonthsNormalizedEnum.March]: [
     {
-      title: 'Páscoa',
+      title: 'Easter',
       description: '',
       days: [31],
       emoji1: '🐇',
@@ -40,7 +40,7 @@ export const specialDates: { [month in MonthsNormalizedEnum]: ISpecialDate[] } =
 
   [MonthsNormalizedEnum.October]: [
     {
-      title: 'halloween',
+      title: 'Halloween',
       description: '',
       days: [31],
       emoji1: '🎃🎃',
@@ -52,30 +52,30 @@ export const specialDates: { [month in MonthsNormalizedEnum]: ISpecialDate[] } =
 
   [MonthsNormalizedEnum.December]: [
     {
-      title: 'Dia da Astronomia',
+      title: 'Astronomy Day',
       description: '',
       days: [2],
       emoji1: '🔭',
       emoji2: '🪐',
     },
     {
-      title: 'Véspera de Natal',
+      title: 'Christmas Eve',
       description: '',
       days: [24],
       emoji1: '🎅',
       emoji2: '',
     },
     {
-      title: 'Natal',
-      description: 'Feliz Natal!!',
+      title: 'Christmas',
+      description: 'Merry Christmas!!',
       days: [25],
       emoji1: '🎅',
       emoji2: '🎄',
     },
 
     {
-      title: 'Véspera de Ano-Novo',
-      description: 'Está chegando um novo Ano!',
+      title: "New Year's Eve",
+      description: 'A new year is coming!',
       days: [31],
       emoji1: '🎈',
       emoji2: '🎊',
