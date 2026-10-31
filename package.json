@@ -1,6 +1,7 @@
 {
   "name": "youtube-reload",
-  "version": "5.0.0",
+  "version": "5.1.0",
+  "license": "MIT",
   "homepage": "https://gabrielogregorio.github.io/youtube-reload",
   "private": false,
   "main": "build/index.js",

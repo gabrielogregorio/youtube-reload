@@ -18,7 +18,7 @@
 ![Storybook](https://img.shields.io/badge/Storybook-10-FF4785?style=for-the-badge&logo=storybook&logoColor=white)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-2E7D32?style=for-the-badge)
 ![Languages](https://img.shields.io/badge/UI-en%20%7C%20pt--BR-555555?style=for-the-badge)
-![License](https://img.shields.io/badge/license-Unlicense-blue?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
 
 [![Tests](https://github.com/gabrielogregorio/youtube-reload/actions/workflows/tests.yml/badge.svg)](https://github.com/gabrielogregorio/youtube-reload/actions/workflows/tests.yml)
 [![Lint](https://github.com/gabrielogregorio/youtube-reload/actions/workflows/check-quality.yml/badge.svg)](https://github.com/gabrielogregorio/youtube-reload/actions/workflows/check-quality.yml)
@@ -129,4 +129,4 @@ Dependabot updates the npm packages and the actions monthly. Dependency rules an
 
 ## License
 
-[The Unlicense](LICENSE): public domain.
+[MIT](LICENSE).
