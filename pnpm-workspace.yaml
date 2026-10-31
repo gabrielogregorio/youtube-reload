@@ -4,10 +4,11 @@ minimumReleaseAgeExclude: []
 
 engineStrict: true
 
-# pnpm blocks install scripts by default; only these may run.
-onlyBuiltDependencies:
-  - cypress
-  - esbuild
+# pnpm blocks install scripts by default and fails on CI for any package left out of this list.
+allowBuilds:
+  cypress: true
+  esbuild: true
+  unrs-resolver: false
 
 # Security overrides. Keep the reason next to each one and drop it once the parent updates.
 overrides:

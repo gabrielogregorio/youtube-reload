@@ -15,6 +15,6 @@ Accepted by alert id, so a new alert on the same package still counts. Review da
 ## Dependency rules
 
 - `pnpm-workspace.yaml` refuses versions published less than 3 days ago (`minimumReleaseAge`).
-- Install scripts are blocked except for the packages in `onlyBuiltDependencies`.
+- Install scripts are blocked except for the packages in `allowBuilds`.
 - Each entry in `overrides` keeps its reason next to it and goes away once the parent package updates.
 - Actions are pinned to a commit hash, and `check-quality.yml` fails when one is not.
