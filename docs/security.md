@@ -1,5 +1,16 @@
 # Security
 
+## Supported versions
+
+Only the latest release gets fixes.
+
+## Reporting a vulnerability
+
+Do not open a public issue. Use the private form in the Security tab of this repository, under "Report a vulnerability",
+with the version, the steps and the impact.
+
+## Dependency checks
+
 `pnpm audit --prod` must stay clean: nothing with a known vulnerability ships to the browser.
 The CI also fails on any high or critical alert in the tooling.
 
