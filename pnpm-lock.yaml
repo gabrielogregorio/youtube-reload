@@ -200,7 +200,7 @@ importers:
         version: 4.14.0
       '@badeball/cypress-cucumber-preprocessor':
         specifier: 28.0.1
-        version: 28.0.1(cypress@16.2.0)(supports-color@8.1.1)
+        version: 28.0.1(cypress@16.2.1)(supports-color@8.1.1)
       '@bahmutov/cypress-esbuild-preprocessor':
         specifier: ^2.2.8
         version: 2.2.8(esbuild@0.28.2)(supports-color@8.1.1)
@@ -262,17 +262,17 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2(supports-color@8.1.1)
       cypress:
-        specifier: ^16.2.0
-        version: 16.2.0
+        specifier: ^16.2.1
+        version: 16.2.1
       cypress-axe:
         specifier: ^1.7.0
-        version: 1.7.0(axe-core@4.14.0)(cypress@16.2.0)
+        version: 1.7.0(axe-core@4.14.0)(cypress@16.2.1)
       cypress-plugin-tab:
         specifier: ^2.0.0
-        version: 2.0.0(cypress@16.2.0)
+        version: 2.0.0(cypress@16.2.1)
       cypress-real-events:
         specifier: ^1.15.1
-        version: 1.15.1(cypress@16.2.0)
+        version: 1.15.1(cypress@16.2.1)
       eslint:
         specifier: ^10.13.0
         version: 10.13.0(jiti@2.7.0)(supports-color@8.1.1)
@@ -3147,8 +3147,8 @@ packages:
     peerDependencies:
       cypress: ^4.x || ^5.x || ^6.x || ^7.x || ^8.x || ^9.x || ^10.x || ^11.x || ^12.x || ^13.x || ^14.x || ^15.x || ^16.x
 
-  cypress@16.2.0:
-    resolution: {integrity: sha512-qWW9RTldmGDmrWHL6UnsFxuOB3bJ3Kh9Ix7nb5mggI/d2IMPbl7ROd6+iy+zLIBp7ujQOQ8a5JQ6eODUJYsXVQ==}
+  cypress@16.2.1:
+    resolution: {integrity: sha512-3Vqf1Krr92hKww/Owob9JrDO7TgBCR2ct+OQrvBOFGSnoGsikL4YF5arqDrJb+SM8Fzi7xXIeVmCeaOqJKPhRA==}
     engines: {node: ^22.0.0 || ^24.0.0 || >=26.0.0}
     hasBin: true
 
@@ -6615,7 +6615,7 @@ snapshots:
       '@babel/helper-string-parser': 7.29.11
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@badeball/cypress-cucumber-preprocessor@28.0.1(cypress@16.2.0)(supports-color@8.1.1)':
+  '@badeball/cypress-cucumber-preprocessor@28.0.1(cypress@16.2.1)(supports-color@8.1.1)':
     dependencies:
       '@cucumber/ci-environment': 15.0.0
       '@cucumber/cucumber': 13.3.0
@@ -6631,7 +6631,7 @@ snapshots:
       cli-table: 0.3.11
       common-ancestor-path: 2.0.0
       cosmiconfig: 10.0.1
-      cypress: 16.2.0
+      cypress: 16.2.1
       debug: 4.4.3(supports-color@8.1.1)
       error-stack-parser: 2.1.4
       fp-ts: 2.16.11
@@ -8577,20 +8577,20 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  cypress-axe@1.7.0(axe-core@4.14.0)(cypress@16.2.0):
+  cypress-axe@1.7.0(axe-core@4.14.0)(cypress@16.2.1):
     dependencies:
       axe-core: 4.14.0
-      cypress: 16.2.0
+      cypress: 16.2.1
 
-  cypress-plugin-tab@2.0.0(cypress@16.2.0):
+  cypress-plugin-tab@2.0.0(cypress@16.2.1):
     dependencies:
-      cypress: 16.2.0
+      cypress: 16.2.1
 
-  cypress-real-events@1.15.1(cypress@16.2.0):
+  cypress-real-events@1.15.1(cypress@16.2.1):
     dependencies:
-      cypress: 16.2.0
+      cypress: 16.2.1
 
-  cypress@16.2.0:
+  cypress@16.2.1:
     dependencies:
       '@cypress/request': 4.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
