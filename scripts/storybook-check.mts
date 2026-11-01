@@ -1,5 +1,5 @@
 // Opens every story of the built Storybook in a real browser. Fails when one does not render, when a
-// flow stops working or when axe finds a WCAG A or AA violation.
+// flow stops working, when axe finds a WCAG A or AA violation or when a story erases the storage of another project.
 import { createRequire } from 'node:module';
 import { Launcher } from 'chrome-launcher';
 import { launch, type Browser } from 'puppeteer-core';
@@ -26,6 +26,8 @@ const WCAG_AA_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
 const FAILED_PHASES = ['errored', 'aborted', 'playErrored', 'renderErrored'];
 const FINISHED_PHASES = ['completed', 'finished', ...FAILED_PHASES];
 const TIME_TO_RENDER_IN_MS = 20000;
+// The published Storybook shares the origin with every project of the account.
+const FOREIGN_KEY = 'another-project.data';
 
 const axeSourcePath = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
 
@@ -42,6 +44,7 @@ const checkEntry = async (browser: Browser, entry: IStorybookEntry, unexpectedHo
   });
   page.setDefaultTimeout(TIME_TO_RENDER_IN_MS);
 
+  await page.evaluateOnNewDocument(`localStorage.setItem('${FOREIGN_KEY}', 'keep')`);
   await serveTheThumbnailsLocally(page, new URL(STORYBOOK_URL).origin, unexpectedHosts);
   await page.goto(new URL(`iframe.html?id=${entry.id}&viewMode=${entry.type}`, STORYBOOK_URL).href);
 
@@ -81,6 +84,10 @@ const checkEntry = async (browser: Browser, entry: IStorybookEntry, unexpectedHo
   result.violations.forEach(({ id, nodes }) => {
     problems.push(`axe ${id}: ${nodes.map(({ target }) => target.join(' ')).join(', ')}`);
   });
+
+  if ((await page.evaluate(`localStorage.getItem('${FOREIGN_KEY}')`)) === null) {
+    problems.push('erased the localStorage of another project');
+  }
 
   await page.close();
 

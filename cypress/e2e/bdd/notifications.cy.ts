@@ -17,14 +17,14 @@ Then('the notifications dropdown should open', () => {
 
 Then('the user should see a list of their notifications after {string} ms', (timeInMs: string) => {
   cy.window().then((win) => {
-    const notifications = JSON.parse(win.localStorage.getItem('notify') || '');
+    const notifications = JSON.parse(win.localStorage.getItem('youtube-reload.notify') || '');
     expect(notifications).to.be.an('array').that.is.empty;
   });
 
   cy.tick(Number(timeInMs));
 
   cy.window().then((win) => {
-    const notifications = JSON.parse(win.localStorage.getItem('notify') || '');
+    const notifications = JSON.parse(win.localStorage.getItem('youtube-reload.notify') || '');
     expect(notifications).to.be.an('array').that.is.not.empty;
     expect(notifications.every((item) => typeof item === 'number')).to.be.true;
   });

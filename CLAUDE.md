@@ -30,6 +30,8 @@ Run what the change can break: lint for a config tweak, unit for logic, E2E for 
 - New components get a story in `src/stories` that uses the real thing.
 - The memory limit of the site stays at 300 MB. When the check fails, find the cause, do not raise the limit.
 - Tests never use the network. Fixtures keep the dimensions of the real images, because memory depends on them.
+- Storage goes through `StorageService`, never directly. `localStorage.clear()` is forbidden in anything published,
+  stories included. Details in `docs/security.md`.
 - Each PR to `main` needs a new version in `package.json`: the merge creates the tag and the release.
 
 ## CI/CD
@@ -50,6 +52,8 @@ Run what the change can break: lint for a config tweak, unit for logic, E2E for 
 - GitHub expressions: `condition && '' || '0'` is always `'0'`, because an empty string is false.
 - The notifications backdrop is modal, so a spec must close the panel before clicking the page.
 - A failing Storybook flow shows no error screen: the story ends as `finished` and only the console has the failure.
+- The `github.io` origin is shared with every project of the account. A `localStorage.clear()` in a story erased the
+  data of all of them, and no test of this repository could see it.
 - A card shows 320x180. A bigger thumbnail adds 17 MB of memory per playlist.
 - `vite preview` keeps a child alive when its wrapper dies. Check who owns a port before killing anything: other
   projects use 5556 too.

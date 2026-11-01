@@ -23,6 +23,19 @@ Accepted by alert id, so a new alert on the same package still counts. Review da
 | [GHSA-gcqx-w48m-w2h4](https://github.com/advisories/GHSA-gcqx-w48m-w2h4) | `deepmerge` through `workbox-build` | low | No patched version exists. Runs only at build time over the project own config. |
 | [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249) | `minimatch` through ESLint and others | moderate | The fix is the major 11, which breaks `eslint-plugin-import-x`. Runs only during lint over patterns from this repository. |
 
+## Shared origin
+
+The site, the previews and the Storybook live on `gabrielogregorio.github.io`, the same origin as every other project
+of the account. `localStorage`, `sessionStorage`, IndexedDB and cookies are not separated between them.
+
+- `localStorage.clear()` is forbidden in anything published, stories included: it would erase the data of all those
+  projects. The lint blocks direct access outside `StorageService`, and `pnpm run e2e:storybook` fails when a story erases
+  a key of another project.
+- Every key has the prefix of the project and of the environment (`src/core/services/storageKey.ts`), and a reset removes
+  only that prefix.
+- A prefix prevents accidents, not reading. Any script of the origin can read everything, so nothing sensitive goes in
+  the browser storage.
+
 ## Dependency rules
 
 - `pnpm-workspace.yaml` refuses versions published less than 3 days ago (`minimumReleaseAge`).
