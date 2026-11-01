@@ -46,7 +46,7 @@ Each visit shuffles a catalog of songs into a new playlist of 25 cards. Every ca
 - **Daily highlight:** commemorative dates and a random quote, with arrows to go through them.
 - **Notifications:** what is new in the app, marked as read a few seconds after opening the bell.
 - **Two languages:** English and Brazilian Portuguese, switched live from the top bar.
-- **Your data stays with you:** reactions, profile emoji and language live in the browser `localStorage`.
+- **Your data stays with you:** reactions, profile emoji and language live in the browser `localStorage`, under a prefix of their own.
 - **Installable:** it is a PWA and keeps working offline after the first visit.
 
 ## Set up on a new PC

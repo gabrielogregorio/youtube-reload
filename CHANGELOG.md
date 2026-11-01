@@ -2,6 +2,14 @@
 
 What changed and **why**. Releases also get notes on GitHub (`create-tag-and-release.yml`).
 
+## 5.1.4 - 2026-10-31
+
+- Fixed the Notifications stories erasing the whole `localStorage` of `gabrielogregorio.github.io`, which is shared with
+  every project of the account. `StorageService.clear()` now removes only its own prefix.
+- Added a prefix of project and environment to every key. Values saved by older versions move to the new key on the
+  first read, on the site only.
+- Added a lint rule against direct storage access, and a Storybook check that fails when a story erases another project.
+
 ## 5.1.3 - 2026-10-31
 
 - Added the agent guide, the contribution guide, the code of conduct, the support page and how to report a vulnerability,

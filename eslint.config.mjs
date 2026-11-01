@@ -51,6 +51,7 @@ const projectRules = {
       lang: 'en_US',
       minLength: 3,
       skipWords: [
+        'pathname',
         'tsconfig',
         'luminance',
         'workbox',
@@ -127,6 +128,8 @@ const projectRules = {
   ],
 };
 
+const storageMessage = 'Use StorageService: the origin is shared with other projects.';
+
 export default tseslint.config(
   {
     ignores: [
@@ -169,7 +172,22 @@ export default tseslint.config(
       'react-hooks/rules-of-hooks': 'error',
       'react/button-has-type': 'error',
       ...projectRules,
+      // The github.io origin is shared: every key goes through StorageService, with the prefix of the project.
+      'no-restricted-globals': [
+        'error',
+        { name: 'localStorage', message: storageMessage },
+        { name: 'sessionStorage', message: storageMessage },
+      ],
+      'no-restricted-properties': [
+        'error',
+        { object: 'window', property: 'localStorage', message: storageMessage },
+        { object: 'window', property: 'sessionStorage', message: storageMessage },
+      ],
     },
+  },
+  {
+    files: ['src/core/services/StorageService.ts', 'src/core/services/storageKey.ts', 'tests/setup.ts', '**/*.spec.ts', '**/*.spec.tsx'],
+    rules: { 'no-restricted-globals': 'off', 'no-restricted-properties': 'off' },
   },
   {
     files: ['scripts/**/*.mts'],
