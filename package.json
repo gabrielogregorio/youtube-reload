@@ -95,7 +95,7 @@
     "@vitest/ui": "^5.0.5",
     "axe-core": "^4.14.0",
     "chrome-launcher": "^1.2.2",
-    "cypress": "^16.2.0",
+    "cypress": "^16.2.1",
     "cypress-axe": "^1.7.0",
     "cypress-plugin-tab": "^2.0.0",
     "cypress-real-events": "^1.15.1",
