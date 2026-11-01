@@ -78,7 +78,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "@eslint/compat": "^2.1.1",
     "@eslint/js": "^10.0.1",
-    "@sentry/vite-plugin": "^11.9.0",
+    "@sentry/vite-plugin": "^11.10.0",
     "@storybook/addon-a11y": "^10.6.5",
     "@storybook/addon-docs": "^10.6.5",
     "@storybook/react-vite": "^10.6.5",
